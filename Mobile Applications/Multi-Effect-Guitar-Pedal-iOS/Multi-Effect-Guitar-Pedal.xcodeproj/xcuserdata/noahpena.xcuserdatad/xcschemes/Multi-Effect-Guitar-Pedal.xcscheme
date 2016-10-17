@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0800"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F41A83EC1DB571B700004F0C"
+               BuildableName = "Multi-Effect-Guitar-Pedal.app"
+               BlueprintName = "Multi-Effect-Guitar-Pedal"
+               ReferencedContainer = "container:Multi-Effect-Guitar-Pedal.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F41A84001DB571B800004F0C"
+               BuildableName = "Multi-Effect-Guitar-PedalTests.xctest"
+               BlueprintName = "Multi-Effect-Guitar-PedalTests"
+               ReferencedContainer = "container:Multi-Effect-Guitar-Pedal.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F41A840B1DB571B800004F0C"
+               BuildableName = "Multi-Effect-Guitar-PedalUITests.xctest"
+               BlueprintName = "Multi-Effect-Guitar-PedalUITests"
+               ReferencedContainer = "container:Multi-Effect-Guitar-Pedal.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F41A83EC1DB571B700004F0C"
+            BuildableName = "Multi-Effect-Guitar-Pedal.app"
+            BlueprintName = "Multi-Effect-Guitar-Pedal"
+            ReferencedContainer = "container:Multi-Effect-Guitar-Pedal.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </TestAction>
+   <LaunchAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F41A83EC1DB571B700004F0C"
+            BuildableName = "Multi-Effect-Guitar-Pedal.app"
+            BlueprintName = "Multi-Effect-Guitar-Pedal"
+            ReferencedContainer = "container:Multi-Effect-Guitar-Pedal.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+      <AdditionalOptions>
+      </AdditionalOptions>
+   </LaunchAction>
+   <ProfileAction
+      buildConfiguration = "Release"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F41A83EC1DB571B700004F0C"
+            BuildableName = "Multi-Effect-Guitar-Pedal.app"
+            BlueprintName = "Multi-Effect-Guitar-Pedal"
+            ReferencedContainer = "container:Multi-Effect-Guitar-Pedal.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
