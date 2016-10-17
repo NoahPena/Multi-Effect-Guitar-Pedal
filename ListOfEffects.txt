@@ -1,0 +1,14 @@
+Reverb
+Chorus
+Delay
+Fade
+Flanger
+Lowpass
+Highpass
+Overdrive
+Phaser
+*Pitch*
+*Reverse*
+Tremolo
+Bandpass
+Bandreject
