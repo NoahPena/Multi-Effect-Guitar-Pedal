@@ -1,13 +1,20 @@
 
-var fork = require('child_process').fork;
+var spawn = require('child_process').spawn;
 
-var child;
+console.log('Now playing Reverb');
 
-function killCommand()
+var a = spawn('sox', ['-d', '-d', 'reverb', '80']);
+
+
+function anotherOne()
 {
-	process.exit();
+	process.kill(a.pid);
+
+	console.log('Now Playing Chorus');
+
+	//chorus 0.7 0.9 55 0.4 0.25 2 −t
+	var b = spawn('sox', ['-d', '-d', 'chorus', '0.7', '0.9', '55', '0.4', '0.25', '2', '-t']);
 }
 
-child = fork('./Reverb.js');
 
-setTimeout(killCommand, 3000);
+setTimeout(anotherOne, 3000);
