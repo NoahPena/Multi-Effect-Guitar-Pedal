@@ -1,9 +1,12 @@
-package com.noahpena.multi_effect_guitar_pedal;
+package com.noahpena.multi_effect_guitar_pedal.Activities;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity
+import com.noahpena.multi_effect_guitar_pedal.R;
+
+public class MainActivity extends Activity
 {
 
     @Override
