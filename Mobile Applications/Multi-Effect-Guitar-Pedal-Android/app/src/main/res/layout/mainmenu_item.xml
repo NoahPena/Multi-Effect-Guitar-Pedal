@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="51dp"
         android:layout_marginEnd="51dp"
-        android:id="@+id/textView3"
+        android:id="@+id/mainMenuItemText"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -23,7 +23,7 @@
         android:background="@drawable/graphic_equalizer"
         android:layout_marginLeft="35dp"
         android:layout_marginStart="35dp"
-        android:id="@+id/imageView"
+        android:id="@+id/mainMenuItemImage"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
