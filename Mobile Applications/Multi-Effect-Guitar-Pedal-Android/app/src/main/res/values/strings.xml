@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Multi-Effect-Guitar-Pedal</string>
+
+    <string-array name="effects_arrays">
+        <item>Chorus</item>
+        <item>Reverb</item>
+        <item>Delay</item>
+        <item>Echo</item>
+        <item>Flanger</item>
+        <item>Phaser</item>
+        <item>Tremolo</item>
+        <item>Overdrive</item>
+        <item>Pitch Shift</item>
+        <item>Low Pass</item>
+        <item>High Pass</item>
+    </string-array>
 </resources>

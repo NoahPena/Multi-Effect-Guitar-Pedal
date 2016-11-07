@@ -1,6 +1,7 @@
 package com.noahpena.multi_effect_guitar_pedal.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
@@ -26,10 +27,7 @@ public class MainActivity extends Activity
     ImageView setlistImage;
     TextView setlistText;
 
-    Drawable graphicImage;
-    Drawable graphicGlowImage;
-    Drawable guitarImage;
-    Drawable guitarGlowImage;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -37,6 +35,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        activity = this;
 
         effectsButton = (RelativeLayout)findViewById(R.id.mainmenuEffectsButton);
         setlistButton = (RelativeLayout)findViewById(R.id.mainmenuSetlistButton);
@@ -47,26 +46,15 @@ public class MainActivity extends Activity
         effectsText = (TextView)findViewById(R.id.mainmenuEffectsText);
         setlistText = (TextView)findViewById(R.id.mainmenuSetlistText);
 
-        graphicImage = getResources().getDrawable(R.drawable.graphic_equalizer, null);
-        graphicGlowImage = getResources().getDrawable(R.drawable.graphic_equalizer_glow, null);
 
-//        effectsButton.setOnTouchListener(new View.OnTouchListener()
-//        {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event)
-//            {
-//
-//                if(event.getAction() == MotionEvent.ACTION_DOWN)
-//                {
-//                    effectsImage.setBackground(graphicGlowImage);
-//                }
-//                else if(event.getAction() == MotionEvent.ACTION_UP)
-//                {
-//                    effectsImage.setBackground(graphicImage);
-//                }
-//
-//                return false;
-//            }
-//        });
+        effectsButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(activity, EffectsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
