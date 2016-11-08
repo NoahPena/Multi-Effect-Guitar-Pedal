@@ -46,7 +46,45 @@ public class EffectsFragment extends Fragment
                 layout = R.layout.chorus_effect_layout;
                 break;
         }
+
+        View view = inflater.inflate(layout, container, false);
+
+        switch(result)
+        {
+            case "Chorus":
+                view = setupChorusView(view);
+                break;
+
+            case "Delay":
+                view = setupDelayView(view);
+                break;
+
+            case "Reverb":
+                view = setupReverbView(view);
+                break;
+
+            default:
+                view = setupChorusView(view);
+                break;
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(layout, container, false);
+        return view;
+    }
+
+    public View setupChorusView(View view)
+    {
+
+        return view;
+    }
+
+    public View setupDelayView(View view)
+    {
+        return view;
+    }
+
+    public View setupReverbView(View view)
+    {
+        return view;
     }
 }
