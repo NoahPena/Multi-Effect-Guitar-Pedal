@@ -38,6 +38,10 @@ public class EffectsFragment extends Fragment
                 layout = R.layout.delay_effect_layout;
                 break;
 
+            case "Reverb":
+                layout = R.layout.reverb_effect_layout;
+                break;
+
             default:
                 layout = R.layout.chorus_effect_layout;
                 break;
