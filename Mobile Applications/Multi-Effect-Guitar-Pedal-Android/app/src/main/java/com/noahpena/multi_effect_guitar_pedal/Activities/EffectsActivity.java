@@ -31,6 +31,8 @@ public class EffectsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.effects_layout);
 
+        //Bluetooth.init(this);
+
         spinner = (Spinner)findViewById(R.id.effectsSpinner);
 
         toolbar = (Toolbar)findViewById(R.id.effectsToolbar);
@@ -67,6 +69,8 @@ public class EffectsActivity extends AppCompatActivity
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 String item = spinner.getSelectedItem().toString();
+
+                //Bluetooth.sendString(item + " was selected");
 
                 Bundle b = new Bundle();
                 b.putString("Effect", item);
