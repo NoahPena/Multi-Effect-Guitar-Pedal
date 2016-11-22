@@ -1,17 +1,17 @@
 package com.noahpena.multi_effect_guitar_pedal.Activities;
 
+
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.ParcelUuid;
 import android.widget.Toast;
 
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by noah-pena on 11/9/16.
@@ -20,95 +20,92 @@ import java.util.Set;
 public class Bluetooth
 {
 
+    private static BluetoothDevice guitarPedalDevice = null;
+    private static BluetoothSocket socket = null;
+
     private static OutputStream outputStream = null;
-    private static InputStream inputStream = null;
 
-    private static void openBluetoothSettingsPage(Context context)
-    {
-        final Intent intent = new Intent(Intent.ACTION_MAIN, null);
-        intent.addCategory(Intent.CATEGORY_LAUNCHER);
-        ComponentName cn = new ComponentName("com.android.settings",
-                "com.android.settings.bluetooth.BluetoothSettings");
-        intent.setComponent(cn);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity( intent);
-    }
 
-    public static void init(Context context)
+    public static void init(Activity activity)
     {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        if(bluetoothAdapter != null)
+        if(bluetoothAdapter == null)
         {
-            if(bluetoothAdapter.isEnabled())
-            {
-                Set<BluetoothDevice> bondedDevices = bluetoothAdapter.getBondedDevices();
+            Toast.makeText(activity.getApplicationContext(), "Device does not support Bluetooth", Toast.LENGTH_SHORT).show();
+        }
 
-                if(bondedDevices.size() > 0)
+        if(!bluetoothAdapter.isEnabled())
+        {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            activity.startActivityForResult(enableBtIntent, 1);
+        }
+
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+
+        if(pairedDevices.size() > 0)
+        {
+            for(BluetoothDevice device : pairedDevices)
+            {
+                if(device.getName() == "Multi-Effect Guitar Pedal")
                 {
-                    Object[] devices = bondedDevices.toArray();
-
-                    for (int i = 0; i < devices.length; i++)
-                    {
-                        BluetoothDevice device = (BluetoothDevice) devices[i];
-                        ParcelUuid[] uuids = device.getUuids();
-
-                        try
-                        {
-                            BluetoothSocket socket = device.createRfcommSocketToServiceRecord(uuids[0].getUuid());
-
-                            socket.connect();
-
-                            outputStream = socket.getOutputStream();
-                            inputStream = socket.getInputStream();
-                            return;
-                        }
-                        catch(Exception e)
-                        {
-
-                        }
-                    }
+                    guitarPedalDevice = device;
+                    break;
                 }
+            }
 
-                Toast.makeText(context, "Please Connect to Guitar-Pedal", Toast.LENGTH_SHORT).show();
-                openBluetoothSettingsPage(context);
-            }
-            else
-            {
-                Toast.makeText(context, "Please turn on your Bluetooth", Toast.LENGTH_SHORT).show();
-                openBluetoothSettingsPage(context);
-            }
+
+        }
+        else
+        {
+
         }
     }
 
 
-    public static void sendString(String s)
+    public static void connectToDevice()
     {
+        if(guitarPedalDevice == null)
+        {
+
+            return;
+        }
+
         try
         {
-            outputStream.write(s.getBytes());
+            //Serial uuid
+            UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+            socket = guitarPedalDevice.createRfcommSocketToServiceRecord(uuid);
+
+            outputStream = socket.getOutputStream();
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+
         }
     }
 
-    public static String readString()
+    public static void write(byte[] bytes)
     {
-        byte[] buffer = new byte[1024];
-        int bytes = 0;
-
         try
         {
-            bytes = inputStream.read(buffer);
-            return buffer.toString();
+            outputStream.write(bytes);
         }
         catch(Exception e)
         {
-            e.printStackTrace();
-        }
 
-        return null;
+        }
+    }
+
+    public static void close()
+    {
+        try
+        {
+            socket.close();
+        }
+        catch(Exception e)
+        {
+
+        }
     }
 }

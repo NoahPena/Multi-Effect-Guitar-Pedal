@@ -93,6 +93,12 @@ public class EffectsActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+    }
+
     public boolean onCreateOptionsMenu(Menu menu)
     {
         MenuInflater inflater = getMenuInflater();
