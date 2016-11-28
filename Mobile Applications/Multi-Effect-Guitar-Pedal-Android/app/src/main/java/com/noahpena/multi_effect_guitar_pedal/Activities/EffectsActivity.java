@@ -2,6 +2,7 @@ package com.noahpena.multi_effect_guitar_pedal.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +19,7 @@ import android.widget.Spinner;
 
 import com.noahpena.multi_effect_guitar_pedal.R;
 
+
 /**
  * Created by noah-pena on 11/6/16.
  */
@@ -27,8 +29,11 @@ public class EffectsActivity extends AppCompatActivity
 
     Toolbar toolbar;
     Spinner spinner;
-    FragmentTabHost tabHost;
+    ViewPager viewPager;
 
+    int tabSelected = 0;
+
+    EffectsPageAdapter effectsPageAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -58,14 +63,53 @@ public class EffectsActivity extends AppCompatActivity
 
         Log.d("DEBUG", spinner.getSelectedItem().toString());
 
-        Bundle b = new Bundle();
-        b.putString("Effect", spinner.getSelectedItem().toString());
 
+        effectsPageAdapter = new EffectsPageAdapter(getSupportFragmentManager(), getApplicationContext());
 
-        EffectsFragment fragment = new EffectsFragment();
-        fragment.setArguments(b);
+        viewPager = (ViewPager)findViewById(R.id.effectsViewPager);
+        viewPager.setAdapter(effectsPageAdapter);
 
-        getSupportFragmentManager().beginTransaction().add(R.id.effects_frame, fragment).commit();
+        final TabLayout tabLayout = (TabLayout)findViewById(R.id.sliding_tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener()
+        {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab)
+            {
+                tabSelected = tab.getPosition();
+
+                switch(tabSelected)
+                {
+                    case 0:
+                        spinner.setSelection(UserPreferences.getTabOneSpinnerPosition(getApplicationContext()));
+                        break;
+
+                    case 1:
+                        spinner.setSelection(UserPreferences.getTabTwoSpinnerPosition(getApplicationContext()));
+                        break;
+
+                    case 2:
+                        spinner.setSelection(UserPreferences.getTabThreeSpinnerPosition(getApplicationContext()));
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab)
+            {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab)
+            {
+
+            }
+        });
+
+        //getSupportFragmentManager().beginTransaction().add(R.id.effects_frame, fragment).commit();
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -76,17 +120,22 @@ public class EffectsActivity extends AppCompatActivity
 
                 Bluetooth.write(item + " was selected\n");
 
-                Bundle b = new Bundle();
-                b.putString("Effect", item);
+                switch(tabSelected)
+                {
+                    case 0:
+                        UserPreferences.setTabOneEffect(getApplicationContext(), item, spinner.getSelectedItemPosition());
+                        break;
 
-                EffectsFragment fragment = new EffectsFragment();
-                fragment.setArguments(b);
+                    case 1:
+                        UserPreferences.setTabTwoEffect(getApplicationContext(), item, spinner.getSelectedItemPosition());
+                        break;
 
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    case 2:
+                        UserPreferences.setTabThreeEffect(getApplicationContext(), item, spinner.getSelectedItemPosition());
+                        break;
+                }
 
-                transaction.replace(R.id.effects_frame, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                effectsPageAdapter.notifyDataSetChanged();
             }
 
             @Override

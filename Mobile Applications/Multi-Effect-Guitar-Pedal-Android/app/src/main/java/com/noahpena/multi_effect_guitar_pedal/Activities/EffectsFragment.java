@@ -87,4 +87,5 @@ public class EffectsFragment extends Fragment
     {
         return view;
     }
+
 }
