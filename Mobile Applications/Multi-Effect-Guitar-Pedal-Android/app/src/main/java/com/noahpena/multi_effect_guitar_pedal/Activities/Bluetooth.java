@@ -7,6 +7,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.OutputStream;
@@ -23,7 +24,8 @@ public class Bluetooth
     private static BluetoothDevice guitarPedalDevice = null;
     private static BluetoothSocket socket = null;
 
-    private static OutputStream outputStream = null;
+    private static OutputStream outputStream;
+    private static boolean weConnected = false;
 
 
     public static void init(Activity activity)
@@ -47,18 +49,23 @@ public class Bluetooth
         {
             for(BluetoothDevice device : pairedDevices)
             {
-                if(device.getName() == "Multi-Effect Guitar Pedal")
+                Log.d("DEBUG", device.getName());
+
+                if(device.getName().equalsIgnoreCase("Multi-Effect Guitar Pedal"))
                 {
                     guitarPedalDevice = device;
-                    break;
+                    Log.d("DEBUG", "FOUND DEVICE");
+                    return;
                 }
             }
 
 
+
+            Log.d("DEBUG", "DEVICE NOT PAIRED");
         }
         else
         {
-
+            Log.d("DEBUG", "Device not found");
         }
     }
 
@@ -67,7 +74,7 @@ public class Bluetooth
     {
         if(guitarPedalDevice == null)
         {
-
+            weConnected = false;
             return;
         }
 
@@ -77,23 +84,44 @@ public class Bluetooth
             UUID uuid = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
             socket = guitarPedalDevice.createRfcommSocketToServiceRecord(uuid);
 
+            socket.connect();
+
             outputStream = socket.getOutputStream();
+
+            if(outputStream == null)
+            {
+                Log.d("DEBUG", "Stream is null");
+            }
+            else
+            {
+                Log.d("DEBUG", "Stream is gucci");
+            }
+
+            weConnected = true;
         }
         catch(Exception e)
         {
-
+            weConnected = false;
         }
     }
 
-    public static void write(byte[] bytes)
+    public static void write(String message)
     {
-        try
-        {
-            outputStream.write(bytes);
-        }
-        catch(Exception e)
-        {
 
+        if(weConnected)
+        {
+            try
+            {
+                byte[] bytes = message.getBytes();
+
+                outputStream.write(bytes);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+
+                Log.d("DEBUG", e.getMessage());
+            }
         }
     }
 
@@ -107,5 +135,7 @@ public class Bluetooth
         {
 
         }
+
+        weConnected = false;
     }
 }

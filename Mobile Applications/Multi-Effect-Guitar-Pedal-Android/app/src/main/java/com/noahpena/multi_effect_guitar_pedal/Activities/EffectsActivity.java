@@ -2,7 +2,10 @@ package com.noahpena.multi_effect_guitar_pedal.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,6 +27,8 @@ public class EffectsActivity extends AppCompatActivity
 
     Toolbar toolbar;
     Spinner spinner;
+    FragmentTabHost tabHost;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -31,7 +36,7 @@ public class EffectsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.effects_layout);
 
-        //Bluetooth.init(this);
+        Bluetooth.init(this);
 
         spinner = (Spinner)findViewById(R.id.effectsSpinner);
 
@@ -46,6 +51,7 @@ public class EffectsActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Bluetooth.close();
                 finish();
             }
         });
@@ -59,9 +65,7 @@ public class EffectsActivity extends AppCompatActivity
         EffectsFragment fragment = new EffectsFragment();
         fragment.setArguments(b);
 
-
         getSupportFragmentManager().beginTransaction().add(R.id.effects_frame, fragment).commit();
-
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -70,7 +74,7 @@ public class EffectsActivity extends AppCompatActivity
             {
                 String item = spinner.getSelectedItem().toString();
 
-                //Bluetooth.sendString(item + " was selected");
+                Bluetooth.write(item + " was selected\n");
 
                 Bundle b = new Bundle();
                 b.putString("Effect", item);
@@ -97,7 +101,9 @@ public class EffectsActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
+        Bluetooth.connectToDevice();
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
