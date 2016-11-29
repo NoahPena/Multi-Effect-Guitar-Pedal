@@ -27,17 +27,6 @@
             android:layout_height="200dp"
             android:id="@+id/mainmenuEffectsButton">
 
-            <ImageView
-                android:layout_marginLeft="26dp"
-                android:layout_marginStart="26dp"
-                android:id="@+id/mainmenuEffectsImage"
-                android:src="@drawable/graphic_equalizer"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_height="100dp"
-                android:layout_width="120dp" />
-
             <TextView
                 android:text="Create/Edit\nEffects"
                 android:layout_width="wrap_content"
@@ -76,16 +65,6 @@
                 android:layout_marginRight="32dp"
                 android:layout_marginEnd="32dp" />
 
-            <ImageView
-                android:layout_marginLeft="32dp"
-                android:layout_marginStart="32dp"
-                android:id="@+id/mainmenuSetlistImage"
-                android:src="@drawable/electric_guitar_outline"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_height="170dp"
-                android:layout_width="80dp" />
         </RelativeLayout>
     </RelativeLayout>
 

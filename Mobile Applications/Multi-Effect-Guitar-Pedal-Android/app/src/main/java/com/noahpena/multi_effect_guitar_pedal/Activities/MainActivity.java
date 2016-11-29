@@ -40,8 +40,8 @@ public class MainActivity extends Activity
         effectsButton = (RelativeLayout)findViewById(R.id.mainmenuEffectsButton);
         setlistButton = (RelativeLayout)findViewById(R.id.mainmenuSetlistButton);
 
-        effectsImage = (ImageView)findViewById(R.id.mainmenuEffectsImage);
-        setlistImage = (ImageView)findViewById(R.id.mainmenuSetlistImage);
+//        effectsImage = (ImageView)findViewById(R.id.mainmenuEffectsImage);
+//        setlistImage = (ImageView)findViewById(R.id.mainmenuSetlistImage);
 
         effectsText = (TextView)findViewById(R.id.mainmenuEffectsText);
         setlistText = (TextView)findViewById(R.id.mainmenuSetlistText);

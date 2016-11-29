@@ -19,6 +19,9 @@ import android.widget.Spinner;
 
 import com.noahpena.multi_effect_guitar_pedal.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by noah-pena on 11/6/16.
@@ -32,6 +35,8 @@ public class EffectsActivity extends AppCompatActivity
     ViewPager viewPager;
 
     int tabSelected = 0;
+    boolean manuallySelected = false;
+    boolean tabManuallySelected = false;
 
     EffectsPageAdapter effectsPageAdapter;
 
@@ -42,6 +47,7 @@ public class EffectsActivity extends AppCompatActivity
         setContentView(R.layout.effects_layout);
 
         Bluetooth.init(this);
+        EffectsManager.init(this.getApplicationContext());
 
         spinner = (Spinner)findViewById(R.id.effectsSpinner);
 
@@ -69,6 +75,27 @@ public class EffectsActivity extends AppCompatActivity
         viewPager = (ViewPager)findViewById(R.id.effectsViewPager);
         viewPager.setAdapter(effectsPageAdapter);
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+        {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            {
+
+            }
+
+            @Override
+            public void onPageSelected(int position)
+            {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state)
+            {
+                manuallySelected = false;
+            }
+        });
+
         final TabLayout tabLayout = (TabLayout)findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
@@ -77,6 +104,12 @@ public class EffectsActivity extends AppCompatActivity
             @Override
             public void onTabSelected(TabLayout.Tab tab)
             {
+                if(tabManuallySelected)
+                {
+                    tabManuallySelected = false;
+                    return;
+                }
+
                 tabSelected = tab.getPosition();
 
                 switch(tabSelected)
@@ -93,6 +126,8 @@ public class EffectsActivity extends AppCompatActivity
                         spinner.setSelection(UserPreferences.getTabThreeSpinnerPosition(getApplicationContext()));
                         break;
                 }
+
+                manuallySelected = true;
 
             }
 
@@ -111,11 +146,18 @@ public class EffectsActivity extends AppCompatActivity
 
         //getSupportFragmentManager().beginTransaction().add(R.id.effects_frame, fragment).commit();
 
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
+                if(manuallySelected)
+                {
+                    manuallySelected = false;
+                    return;
+                }
+
                 String item = spinner.getSelectedItem().toString();
 
                 Bluetooth.write(item + " was selected\n");
@@ -135,7 +177,10 @@ public class EffectsActivity extends AppCompatActivity
                         break;
                 }
 
-                effectsPageAdapter.notifyDataSetChanged();
+                tabManuallySelected = true;
+                effectsPageAdapter.updateTab(tabSelected);
+
+
             }
 
             @Override
@@ -165,9 +210,18 @@ public class EffectsActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
 
-            case R.id.action_favorite:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+            case R.id.remove_effect_button:
+                effectsPageAdapter.removeTab(tabSelected);
+                return true;
+
+            case R.id.add_effect_button:
+                effectsPageAdapter.addTab();
+                return true;
+
+            case R.id.save_effect_button:
+                List<Object> listOne = new ArrayList<>();
+                listOne.add(new Integer(20));
+                EffectsManager.saveEffect(this, new BaseEffect("Delay", listOne), null, null);
                 return true;
 
             default:

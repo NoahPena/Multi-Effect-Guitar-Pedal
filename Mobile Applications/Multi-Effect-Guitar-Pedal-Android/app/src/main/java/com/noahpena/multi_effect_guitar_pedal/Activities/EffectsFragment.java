@@ -16,6 +16,8 @@ import com.noahpena.multi_effect_guitar_pedal.R;
 public class EffectsFragment extends Fragment
 {
 
+    public int tabNumber = -1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -25,6 +27,7 @@ public class EffectsFragment extends Fragment
         Bundle b = this.getArguments();
 
         String result = b.getString("Effect", "ERROR");
+        tabNumber = b.getInt("TabNumber", -1);
 
         Log.d("DEBUG", result);
 

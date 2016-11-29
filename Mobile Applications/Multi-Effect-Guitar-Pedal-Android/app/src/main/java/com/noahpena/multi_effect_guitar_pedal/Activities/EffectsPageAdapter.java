@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
 
 /**
  * Created by noah-pena on 11/28/16.
@@ -15,15 +16,43 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 public class EffectsPageAdapter extends FragmentStatePagerAdapter
 {
 
-    private int amountOfTabs = 2;
+    private int amountOfTabs = 1;
 
     private Context context;
+
+    private int tabToBeUpdated = -1;
+
+    private Fragment[] fragments;
 
     public EffectsPageAdapter(FragmentManager fm, Context context)
     {
         super(fm);
 
         this.context = context;
+
+        this.fragments = new Fragment[3];
+    }
+
+    public void addTab()
+    {
+        if(amountOfTabs < 3)
+        {
+            amountOfTabs++;
+        }
+
+        tabToBeUpdated = amountOfTabs - 1;
+        notifyDataSetChanged();
+    }
+
+    public void removeTab(int tabToRemove)
+    {
+        if(amountOfTabs > 1)
+        {
+            amountOfTabs--;
+        }
+
+        tabToBeUpdated = amountOfTabs - 1;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -38,8 +67,7 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
                 break;
 
             case 1:
-                bundle.putString("Effect", "Reverb");
-                //bundle.putString("Effect", UserPreferences.getTabTwoEffect(context));
+                bundle.putString("Effect", UserPreferences.getTabTwoEffect(context));
                 break;
 
             case 2:
@@ -47,9 +75,13 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
                 break;
         }
 
+        bundle.putInt("TabNumber", position);
+
         Fragment fragment = new EffectsFragment();
 
         fragment.setArguments(bundle);
+
+        fragments[position] = fragment;
 
         return fragment;
     }
@@ -80,5 +112,31 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
         }
     }
 
+    public void updateTab(int position)
+    {
+        this.tabToBeUpdated = position;
+        notifyDataSetChanged();
+    }
 
+    @Override
+    public int getItemPosition(Object object)
+    {
+        if(tabToBeUpdated == -1)
+        {
+            return POSITION_UNCHANGED;
+        }
+        else
+        {
+            if(((EffectsFragment)object).tabNumber == tabToBeUpdated)
+            {
+                Log.d("DEBUG", "CHANGED");
+                tabToBeUpdated = -1;
+                return POSITION_NONE;
+            }
+            else
+            {
+                return POSITION_UNCHANGED;
+            }
+        }
+    }
 }

@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/effectsRelativeLayout">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -22,12 +23,21 @@
         android:entries="@array/effects_arrays"
         android:layout_alignBottom="@+id/effectsToolbar"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="51dp"
+        android:layout_marginStart="10dp"
         android:layout_marginBottom="13dp"
         android:layout_width="140dp"
         android:popupBackground="?attr/colorButtonNormal"></Spinner>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/userEffectNameTextBox"
+            android:textSize="18sp"
+            android:textAlignment="center" />
+
     </android.support.v7.widget.Toolbar>
+
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/effectsViewPager"
