@@ -33,26 +33,50 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
         this.fragments = new Fragment[3];
     }
 
-    public void addTab()
+    public EffectsFragment getFragment(int index)
+    {
+        return (EffectsFragment)fragments[index];
+    }
+
+    public void setAmountOfTabs(int amount)
+    {
+        amountOfTabs = amount;
+        updateAllTabs();
+    }
+
+    public void updateAllTabs()
+    {
+        tabToBeUpdated = -2;
+        notifyDataSetChanged();
+    }
+
+    public boolean addTab()
     {
         if(amountOfTabs < 3)
         {
             amountOfTabs++;
         }
 
-        tabToBeUpdated = amountOfTabs - 1;
-        notifyDataSetChanged();
+        updateAllTabs();
+        //tabToBeUpdated = amountOfTabs - 1;
+        //notifyDataSetChanged();
+
+        return (amountOfTabs < 3);
     }
 
-    public void removeTab(int tabToRemove)
+    public boolean removeTab(int tabToRemove)
     {
         if(amountOfTabs > 1)
         {
             amountOfTabs--;
         }
 
-        tabToBeUpdated = amountOfTabs - 1;
-        notifyDataSetChanged();
+        updateAllTabs();
+
+//        tabToBeUpdated = amountOfTabs - 1;
+//        notifyDataSetChanged();
+
+        return (amountOfTabs > 1);
     }
 
     @Override
@@ -64,14 +88,17 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
         {
             case 0:
                 bundle.putString("Effect", UserPreferences.getTabOneEffect(context));
+                bundle.putInt("SpinnerValue", UserPreferences.getTabOneSpinnerPosition(context));
                 break;
 
             case 1:
                 bundle.putString("Effect", UserPreferences.getTabTwoEffect(context));
+                bundle.putInt("SpinnerValue", UserPreferences.getTabTwoSpinnerPosition(context));
                 break;
 
             case 2:
                 bundle.putString("Effect", UserPreferences.getTabThreeEffect(context));
+                bundle.putInt("SpinnerValue", UserPreferences.getTabThreeSpinnerPosition(context));
                 break;
         }
 
@@ -82,6 +109,11 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
         fragment.setArguments(bundle);
 
         fragments[position] = fragment;
+
+        if(tabToBeUpdated == -2 && position == (amountOfTabs - 1))
+        {
+            tabToBeUpdated = -1;
+        }
 
         return fragment;
     }
@@ -121,6 +153,10 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
     @Override
     public int getItemPosition(Object object)
     {
+        if(tabToBeUpdated == -2)
+        {
+            return POSITION_NONE;
+        }
         if(tabToBeUpdated == -1)
         {
             return POSITION_UNCHANGED;

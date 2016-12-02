@@ -28,6 +28,11 @@ public class Bluetooth
     private static boolean weConnected = false;
 
 
+    public static boolean isConnected()
+    {
+        return weConnected;
+    }
+
     public static void init(Activity activity)
     {
         BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

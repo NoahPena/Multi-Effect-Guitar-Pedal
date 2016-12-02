@@ -10,7 +10,7 @@
         <item>Phaser</item>
         <item>Tremolo</item>
         <item>Overdrive</item>
-        <item>Pitch Shift</item>
+        <!--<item>Pitch Shift</item>-->
         <item>Low Pass</item>
         <item>High Pass</item>
     </string-array>

@@ -7,6 +7,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/chorus_root_layout"
         android:layout_width="match_parent"
         android:layout_height="800dp">
 
@@ -15,9 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
             android:layout_marginTop="12dp"
-            android:id="@+id/delay_delay_seekbar"
+            android:id="@+id/chorus_gain_in_seekbar"
             android:layout_alignStart="@+id/textView4"
-            android:layout_toStartOf="@+id/delay_delay_value" />
+            android:layout_toStartOf="@+id/chorus_gain_in_value" />
 
         <TextView
             android:text="0"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
             android:id="@+id/textView7"
-            android:layout_below="@+id/delay_delay_seekbar"
+            android:layout_below="@+id/chorus_gain_in_seekbar"
             android:layout_alignStart="@+id/seekBar4"
             android:textSize="18sp" />
 
@@ -42,22 +43,22 @@
             android:layout_height="wrap_content"
             android:id="@+id/seekBar4"
             android:layout_below="@+id/textView7"
-            android:layout_alignStart="@+id/delay_delay_seekbar"
+            android:layout_alignStart="@+id/chorus_gain_in_seekbar"
             android:layout_marginTop="12dp"
-            android:layout_toStartOf="@+id/delay_delay_value" />
+            android:layout_toStartOf="@+id/chorus_gain_in_value" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/delay_delay_value"
+            android:layout_alignBottom="@+id/chorus_gain_in_value"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/delay_delay_value"
-            android:layout_alignBottom="@+id/delay_delay_seekbar"
+            android:id="@+id/chorus_gain_in_value"
+            android:layout_alignBottom="@+id/chorus_gain_in_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp" />
 
@@ -126,7 +127,8 @@
             android:id="@+id/switch1"
             android:layout_alignBaseline="@+id/textView"
             android:layout_alignBottom="@+id/textView"
-            android:layout_toStartOf="@+id/textView5" />
+            android:layout_toStartOf="@+id/textView5"
+            android:tag="delayRoot"/>
 
         <TextView
             android:text="Delay"
@@ -235,6 +237,41 @@
             android:layout_alignBottom="@+id/seekBar5"
             android:layout_toEndOf="@+id/seekBar5"
             android:id="@+id/textView12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modulation"
+            android:layout_below="@+id/textView12"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView15"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:tag="modulation"
+            android:id="@+id/seekBar6" />
+
+        <TextView
+            android:text="Triangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView16"
+            android:layout_toEndOf="@+id/textView"
+            android:id="@+id/textView17" />
+
+        <TextView
+            android:text="Sinusoidal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView16"
+            android:layout_alignTop="@+id/seekBar6"
+            android:layout_toStartOf="@+id/textView" />
 
     </RelativeLayout>
 </ScrollView>

@@ -8,16 +8,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp">
+        android:layout_height="500dp"
+        android:id="@+id/reverb_root_layout">
 
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
             android:layout_marginTop="12dp"
-            android:id="@+id/delay_delay_seekbar"
+            android:id="@+id/reverb_reverberance_seekbar"
             android:layout_alignStart="@+id/textView4"
-            android:layout_toStartOf="@+id/delay_delay_value" />
+            android:layout_toStartOf="@+id/reverb_reverberance_value" />
 
         <TextView
             android:text="0"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
             android:id="@+id/textView7"
-            android:layout_below="@+id/delay_delay_seekbar"
+            android:layout_below="@+id/reverb_reverberance_seekbar"
             android:layout_alignStart="@+id/seekBar4"
             android:textSize="18sp" />
 
@@ -42,22 +43,22 @@
             android:layout_height="wrap_content"
             android:id="@+id/seekBar4"
             android:layout_below="@+id/textView7"
-            android:layout_alignStart="@+id/delay_delay_seekbar"
+            android:layout_alignStart="@+id/reverb_reverberance_seekbar"
             android:layout_marginTop="13dp"
-            android:layout_toStartOf="@+id/delay_delay_value" />
+            android:layout_toStartOf="@+id/reverb_reverberance_value" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/delay_delay_value"
+            android:layout_alignBottom="@+id/reverb_reverberance_value"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/delay_delay_value"
-            android:layout_alignBottom="@+id/delay_delay_seekbar"
+            android:id="@+id/reverb_reverberance_value"
+            android:layout_alignBottom="@+id/reverb_reverberance_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp" />
 
@@ -77,7 +78,6 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
             android:layout_below="@+id/textView5"
-            android:layout_alignEnd="@+id/space3"
             android:layout_marginTop="11dp" />
 
         <View
@@ -85,7 +85,6 @@
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
             android:layout_below="@+id/seekBar4"
-            android:layout_alignEnd="@+id/space3"
             android:layout_marginTop="18dp" />
 
         <TextView
@@ -96,7 +95,6 @@
             android:textSize="18sp"
             android:layout_marginTop="60dp"
             android:layout_marginStart="17dp"
-            android:layout_below="@+id/view10"
             android:layout_alignParentStart="true" />
 
     </RelativeLayout>

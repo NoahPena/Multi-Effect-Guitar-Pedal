@@ -1,5 +1,6 @@
 package com.noahpena.multi_effect_guitar_pedal.Activities;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.noahpena.multi_effect_guitar_pedal.R;
 
@@ -32,9 +34,10 @@ public class EffectsActivity extends AppCompatActivity
 
     Toolbar toolbar;
     Spinner spinner;
-    ViewPager viewPager;
+    public static ViewPager viewPager;
+    TextView effectName;
 
-    int tabSelected = 0;
+    public static int tabSelected = 0;
     boolean manuallySelected = false;
     boolean tabManuallySelected = false;
 
@@ -50,6 +53,8 @@ public class EffectsActivity extends AppCompatActivity
         EffectsManager.init(this.getApplicationContext());
 
         spinner = (Spinner)findViewById(R.id.effectsSpinner);
+
+        effectName = (TextView)findViewById(R.id.userEffectNameTextBox);
 
         toolbar = (Toolbar)findViewById(R.id.effectsToolbar);
         setSupportActionBar(toolbar);
@@ -69,11 +74,11 @@ public class EffectsActivity extends AppCompatActivity
 
         Log.d("DEBUG", spinner.getSelectedItem().toString());
 
-
         effectsPageAdapter = new EffectsPageAdapter(getSupportFragmentManager(), getApplicationContext());
 
         viewPager = (ViewPager)findViewById(R.id.effectsViewPager);
         viewPager.setAdapter(effectsPageAdapter);
+
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
@@ -93,6 +98,7 @@ public class EffectsActivity extends AppCompatActivity
             public void onPageScrollStateChanged(int state)
             {
                 manuallySelected = false;
+                Log.d("DEBUG", "SWIPED");
             }
         });
 
@@ -144,8 +150,6 @@ public class EffectsActivity extends AppCompatActivity
             }
         });
 
-        //getSupportFragmentManager().beginTransaction().add(R.id.effects_frame, fragment).commit();
-
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
@@ -157,6 +161,8 @@ public class EffectsActivity extends AppCompatActivity
                     manuallySelected = false;
                     return;
                 }
+
+                EffectsManager.updateValues = false;
 
                 String item = spinner.getSelectedItem().toString();
 
@@ -178,6 +184,11 @@ public class EffectsActivity extends AppCompatActivity
                 }
 
                 tabManuallySelected = true;
+
+                EffectsManager.currentTabOne = null;
+                EffectsManager.currentTabTwo = null;
+                EffectsManager.currentTabThree = null;
+
                 effectsPageAdapter.updateTab(tabSelected);
 
 
@@ -195,7 +206,22 @@ public class EffectsActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
-        Bluetooth.connectToDevice();
+
+        if(!Bluetooth.isConnected())
+        {
+            Bluetooth.connectToDevice();
+        }
+
+
+        if(EffectsManager.currentEffect != null)
+        {
+            effectName.setText(EffectsManager.currentEffect.getName());
+        }
+        else
+        {
+            effectName.setText("");
+        }
+
     }
 
 
@@ -207,11 +233,27 @@ public class EffectsActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         switch (item.getItemId()) {
 
             case R.id.remove_effect_button:
-                effectsPageAdapter.removeTab(tabSelected);
+                if(effectsPageAdapter.removeTab(tabSelected))
+                {
+                    switch (effectsPageAdapter.getCount())
+                    {
+                        case 1:
+                            EffectsManager.currentTabTwo = null;
+                            break;
+
+                        case 2:
+                            EffectsManager.currentTabThree = null;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
                 return true;
 
             case R.id.add_effect_button:
@@ -219,9 +261,31 @@ public class EffectsActivity extends AppCompatActivity
                 return true;
 
             case R.id.save_effect_button:
-                List<Object> listOne = new ArrayList<>();
-                listOne.add(new Integer(20));
-                EffectsManager.saveEffect(this, new BaseEffect("Delay", listOne), null, null);
+
+                if(EffectsManager.currentEffect == null)
+                {
+                    EffectsManager.saveNewEffect(this);
+//                    List<BaseEffect.EffectDuple> listOne = new ArrayList<>();
+//                    listOne.add(new BaseEffect.EffectDuple(R.id.delay_delay_seekbar, 0, false, false, false));
+//                    EffectsManager.saveNewEffect(this, new BaseEffect("Delay", 2, this, ), null, null);
+                }
+                else
+                {
+                    EffectsManager.saveOverEffect(this);
+                }
+                return true;
+
+            case R.id.open_effect_button:
+                EffectsManager.openEffect(this, effectsPageAdapter);
+                return true;
+
+            case R.id.create_new_effect_button:
+                EffectsManager.currentEffect = null;
+                EffectsManager.currentTabTwo = null;
+                EffectsManager.currentTabThree = null;
+                effectsPageAdapter.removeTab(tabSelected);
+                effectsPageAdapter.removeTab(tabSelected);
+                effectName.setText("");
                 return true;
 
             default:

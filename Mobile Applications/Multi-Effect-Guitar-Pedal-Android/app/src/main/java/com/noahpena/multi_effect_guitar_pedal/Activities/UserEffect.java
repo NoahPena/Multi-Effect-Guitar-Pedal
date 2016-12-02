@@ -14,6 +14,7 @@ public class UserEffect implements Serializable
     private BaseEffect effectOne;
     private BaseEffect effectTwo;
     private BaseEffect effectThree;
+    private String command;
 
 
     public UserEffect(String name, BaseEffect effectOne, BaseEffect effectTwo, BaseEffect effectThree)
@@ -22,8 +23,24 @@ public class UserEffect implements Serializable
         this.effectOne = effectOne;
         this.effectTwo = effectTwo;
         this.effectThree = effectThree;
+
+        generateCommand();
     }
 
+    public void generateCommand()
+    {
+        command = effectOne.getCommand();
+
+        if(effectTwo != null)
+        {
+            command += effectTwo.getCommand();
+        }
+
+        if(effectThree != null)
+        {
+            command += effectThree.getCommand();
+        }
+    }
 
     public String getName() {
         return name;
@@ -39,6 +56,7 @@ public class UserEffect implements Serializable
 
     public void setEffectOne(BaseEffect effectOne) {
         this.effectOne = effectOne;
+        generateCommand();
     }
 
     public BaseEffect getEffectTwo() {
@@ -47,6 +65,7 @@ public class UserEffect implements Serializable
 
     public void setEffectTwo(BaseEffect effectTwo) {
         this.effectTwo = effectTwo;
+        generateCommand();
     }
 
     public BaseEffect getEffectThree() {
@@ -55,6 +74,7 @@ public class UserEffect implements Serializable
 
     public void setEffectThree(BaseEffect effectThree) {
         this.effectThree = effectThree;
+        generateCommand();
     }
 
     public String getFileName()
