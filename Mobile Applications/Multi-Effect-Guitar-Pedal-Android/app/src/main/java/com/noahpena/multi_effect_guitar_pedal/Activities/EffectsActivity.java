@@ -79,7 +79,6 @@ public class EffectsActivity extends AppCompatActivity
         viewPager = (ViewPager)findViewById(R.id.effectsViewPager);
         viewPager.setAdapter(effectsPageAdapter);
 
-
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
             @Override

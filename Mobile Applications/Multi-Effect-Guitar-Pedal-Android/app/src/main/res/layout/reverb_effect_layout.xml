@@ -24,9 +24,9 @@
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/seekBar4"
-            android:id="@+id/chorus_gain_out_value"
-            android:layout_toEndOf="@+id/seekBar4" />
+            android:layout_alignTop="@+id/reverb_hf_damping_seekbar"
+            android:id="@+id/reverb_hf_damping_value"
+            android:layout_toEndOf="@+id/reverb_hf_damping_seekbar" />
 
         <TextView
             android:text="HF-damping"
@@ -35,13 +35,13 @@
             android:layout_marginTop="17dp"
             android:id="@+id/textView7"
             android:layout_below="@+id/reverb_reverberance_seekbar"
-            android:layout_alignStart="@+id/seekBar4"
+            android:layout_alignStart="@+id/reverb_hf_damping_seekbar"
             android:textSize="18sp" />
 
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/seekBar4"
+            android:id="@+id/reverb_hf_damping_seekbar"
             android:layout_below="@+id/textView7"
             android:layout_alignStart="@+id/reverb_reverberance_seekbar"
             android:layout_marginTop="13dp"
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_below="@+id/seekBar4"
+            android:layout_below="@+id/reverb_hf_damping_seekbar"
             android:layout_marginTop="18dp" />
 
         <TextView
