@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentTop="true">
+
+
+    <RelativeLayout
+        android:id="@+id/phaser_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="12dp"
+            android:id="@+id/phaser_gain_in_seekbar"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_toStartOf="@+id/phaser_gain_in_value" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/phaser_gain_out_seekbar"
+            android:id="@+id/phaser_gain_out_value"
+            android:layout_toEndOf="@+id/phaser_gain_out_seekbar" />
+
+        <TextView
+            android:text="Gain-Out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView7"
+            android:layout_below="@+id/phaser_gain_in_seekbar"
+            android:layout_alignStart="@+id/phaser_gain_out_seekbar"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phaser_gain_out_seekbar"
+            android:layout_below="@+id/textView7"
+            android:layout_alignStart="@+id/phaser_gain_in_seekbar"
+            android:layout_marginTop="12dp"
+            android:layout_toStartOf="@+id/phaser_gain_in_value" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/phaser_gain_in_value"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phaser_gain_in_value"
+            android:layout_alignBottom="@+id/phaser_gain_in_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp" />
+
+        <TextView
+            android:text="Basic Settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView5"
+            android:layout_alignEnd="@+id/space3"
+            android:layout_marginTop="11dp"
+            android:id="@+id/view6" />
+
+        <TextView
+            android:text="Gain-In"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="18sp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="17dp"
+            android:layout_below="@+id/view10"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phaser_gain_out_seekbar"
+            android:layout_alignStart="@+id/phaser_gain_out_seekbar"
+            android:layout_marginTop="19dp"
+            android:id="@+id/textView2"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginTop="12dp"
+            android:id="@+id/phaser_delay_one_seekbar"
+            android:layout_alignEnd="@+id/phaser_gain_out_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/phaser_delay_one_seekbar"
+            android:layout_toEndOf="@+id/phaser_delay_one_seekbar"
+            android:id="@+id/phaser_delay_one_value" />
+
+        <TextView
+            android:text="Decay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phaser_delay_one_seekbar"
+            android:layout_alignStart="@+id/phaser_delay_one_seekbar"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView6"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_marginTop="12dp"
+            android:id="@+id/phaser_decay_one_seekbar"
+            android:layout_toStartOf="@+id/phaser_delay_one_value" />
+
+        <TextView
+            android:text="Speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/phaser_decay_one_seekbar"
+            android:layout_alignStart="@+id/phaser_decay_one_seekbar"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView8"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView8"
+            android:layout_alignStart="@+id/textView8"
+            android:layout_marginTop="12dp"
+            android:id="@+id/phaser_speed_one_seekbar"
+            android:layout_alignEnd="@+id/phaser_decay_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phaser_decay_one_value"
+            android:layout_alignTop="@+id/phaser_decay_one_seekbar"
+            android:layout_toEndOf="@+id/phaser_decay_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/phaser_speed_one_seekbar"
+            android:layout_toEndOf="@+id/phaser_speed_one_seekbar"
+            android:id="@+id/phaser_speed_one_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modulation"
+            android:layout_below="@+id/phaser_speed_one_seekbar"
+            android:layout_alignStart="@+id/textView8"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView15"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:tag="modulation"
+            android:id="@+id/phaser_modulation_one_switch" />
+
+        <Button
+            android:text="Defaults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/view6"
+            android:layout_alignEnd="@+id/textView15"
+            android:id="@+id/phaser_defaults_button" />
+
+        <TextView
+            android:text="Triangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView17"
+            android:layout_alignBaseline="@+id/phaser_modulation_one_switch"
+            android:layout_alignBottom="@+id/phaser_modulation_one_switch"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:text="Sinusoidal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView16"
+            android:layout_alignBaseline="@+id/phaser_modulation_one_switch"
+            android:layout_alignBottom="@+id/phaser_modulation_one_switch"
+            android:layout_toEndOf="@+id/textView4" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView16"
+            android:layout_alignEnd="@+id/space3"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view7" />
+
+    </RelativeLayout>
+</ScrollView>

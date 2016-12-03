@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_alignParentTop="true">
+
+
+    <RelativeLayout
+        android:id="@+id/echo_root_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_gain_in_seekbar"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_toStartOf="@+id/echo_gain_in_value" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/echo_gain_out_seekbar"
+            android:id="@+id/echo_gain_out_value"
+            android:layout_toEndOf="@+id/echo_gain_out_seekbar" />
+
+        <TextView
+            android:text="Gain-Out"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView7"
+            android:layout_below="@+id/echo_gain_in_seekbar"
+            android:layout_alignStart="@+id/echo_gain_out_seekbar"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_gain_out_seekbar"
+            android:layout_below="@+id/textView7"
+            android:layout_alignStart="@+id/echo_gain_in_seekbar"
+            android:layout_marginTop="12dp"
+            android:layout_toStartOf="@+id/echo_gain_in_value" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/echo_gain_in_value"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_gain_in_value"
+            android:layout_alignBottom="@+id/echo_gain_in_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp" />
+
+        <TextView
+            android:text="Basic Settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView5"
+            android:layout_alignEnd="@+id/space3"
+            android:layout_marginTop="11dp"
+            android:id="@+id/view6" />
+
+        <TextView
+            android:text="Gain-In"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="18sp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="17dp"
+            android:layout_below="@+id/view10"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:text="First Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:textStyle="normal|bold"
+            android:id="@+id/textView"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/echo_gain_out_seekbar"
+            android:layout_alignEnd="@+id/space3"
+            android:layout_marginTop="18dp"
+            android:id="@+id/view" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:id="@+id/view3" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_delay_group_one_switch"
+            android:layout_alignBaseline="@+id/textView"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_toStartOf="@+id/textView5"
+            android:tag="delayRoot"/>
+
+        <TextView
+            android:text="Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view3"
+            android:layout_alignStart="@+id/echo_gain_out_seekbar"
+            android:layout_marginTop="19dp"
+            android:id="@+id/textView2"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_delay_one_seekbar"
+            android:layout_alignEnd="@+id/echo_gain_out_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/echo_delay_one_seekbar"
+            android:layout_toEndOf="@+id/echo_delay_one_seekbar"
+            android:id="@+id/echo_delay_one_value" />
+
+        <TextView
+            android:text="Decay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/echo_delay_one_seekbar"
+            android:layout_alignStart="@+id/echo_delay_one_seekbar"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView6"
+            android:textSize="18sp" />
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_decay_one_seekbar"
+            android:layout_toStartOf="@+id/echo_delay_one_value" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_decay_one_value"
+            android:layout_alignTop="@+id/echo_decay_one_seekbar"
+            android:layout_toEndOf="@+id/echo_decay_one_seekbar" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/echo_decay_one_seekbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view4" />
+
+        <TextView
+            android:text="Second Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:textStyle="normal|bold"
+            android:id="@+id/textView23"
+            android:textSize="18sp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_delay_group_two_switch"
+            android:layout_alignBaseline="@+id/textView23"
+            android:layout_alignBottom="@+id/textView23"
+            android:layout_toStartOf="@+id/textView5"
+            android:tag="delayRoot"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView23"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delay"
+            android:layout_below="@+id/view5"
+            android:layout_alignStart="@+id/textView6"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView24"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView24"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_delay_two_seekbar"
+            android:layout_alignEnd="@+id/echo_decay_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/echo_delay_two_seekbar"
+            android:layout_toEndOf="@+id/echo_delay_two_seekbar"
+            android:id="@+id/echo_delay_two_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decay"
+            android:layout_below="@+id/echo_delay_two_seekbar"
+            android:layout_alignStart="@+id/textView6"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView25"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView25"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_decay_two_seekbar"
+            android:layout_alignEnd="@+id/echo_decay_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/echo_decay_two_seekbar"
+            android:layout_toEndOf="@+id/echo_decay_two_seekbar"
+            android:id="@+id/echo_decay_two_value" />
+
+        <!-- this is a big break between them so i dont' get lost!-->
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/echo_decay_two_seekbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view7" />
+
+        <TextView
+            android:text="Third Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:textStyle="normal|bold"
+            android:id="@+id/textView31"
+            android:textSize="18sp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_delay_group_three_switch"
+            android:layout_alignBaseline="@+id/textView31"
+            android:layout_alignBottom="@+id/textView31"
+            android:layout_toStartOf="@+id/textView5"
+            android:tag="delayRoot"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView31"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view8" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delay"
+            android:layout_below="@+id/view8"
+            android:layout_alignStart="@+id/textView6"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView32"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView32"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_delay_three_seekbar"
+            android:layout_alignEnd="@+id/echo_decay_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/echo_delay_three_seekbar"
+            android:layout_toEndOf="@+id/echo_delay_three_seekbar"
+            android:id="@+id/echo_delay_three_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decay"
+            android:layout_below="@+id/echo_delay_three_seekbar"
+            android:layout_alignStart="@+id/textView6"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView33"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView33"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_marginTop="12dp"
+            android:id="@+id/echo_decay_three_seekbar"
+            android:layout_alignEnd="@+id/echo_decay_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/echo_decay_three_seekbar"
+            android:layout_toEndOf="@+id/echo_decay_three_seekbar"
+            android:id="@+id/echo_decay_three_value" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/echo_decay_three_seekbar"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view9" />
+
+        <Button
+            android:text="Defaults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/echo_defaults_button"
+            android:layout_alignBottom="@+id/view6"
+            android:layout_alignStart="@+id/textView4" />
+
+    </RelativeLayout>
+</ScrollView>

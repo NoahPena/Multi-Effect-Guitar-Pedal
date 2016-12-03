@@ -9,56 +9,56 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:id="@+id/reverb_root_layout">
+        android:id="@+id/flanger_root_layout">
 
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView4"
             android:layout_marginTop="12dp"
-            android:id="@+id/reverb_reverberance_seekbar"
+            android:id="@+id/flanger_delay_seekbar"
             android:layout_alignStart="@+id/textView4"
-            android:layout_toStartOf="@+id/reverb_reverberance_value" />
+            android:layout_toStartOf="@+id/flanger_delay_value" />
 
         <TextView
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/reverb_hf_damping_seekbar"
-            android:id="@+id/reverb_hf_damping_value"
-            android:layout_toEndOf="@+id/reverb_hf_damping_seekbar" />
+            android:layout_alignTop="@+id/flanger_depth_seekbar"
+            android:id="@+id/flanger_depth_value"
+            android:layout_toEndOf="@+id/flanger_depth_seekbar" />
 
         <TextView
-            android:text="HF-damping"
+            android:text="Depth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17dp"
             android:id="@+id/textView7"
-            android:layout_below="@+id/reverb_reverberance_seekbar"
-            android:layout_alignStart="@+id/reverb_hf_damping_seekbar"
+            android:layout_below="@+id/flanger_delay_seekbar"
+            android:layout_alignStart="@+id/flanger_depth_seekbar"
             android:textSize="18sp" />
 
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_hf_damping_seekbar"
+            android:id="@+id/flanger_depth_seekbar"
             android:layout_below="@+id/textView7"
-            android:layout_alignStart="@+id/reverb_reverberance_seekbar"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
             android:layout_marginTop="13dp"
-            android:layout_toStartOf="@+id/reverb_reverberance_value" />
+            android:layout_toStartOf="@+id/flanger_delay_value" />
 
         <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/reverb_reverberance_value"
+            android:layout_alignBottom="@+id/flanger_delay_value"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_reverberance_value"
-            android:layout_alignBottom="@+id/reverb_reverberance_seekbar"
+            android:id="@+id/flanger_delay_value"
+            android:layout_alignBottom="@+id/flanger_delay_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp" />
 
@@ -85,11 +85,11 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_below="@+id/reverb_wet_gain_seekbar"
+            android:layout_below="@+id/flanger_interep_seekbar"
             android:layout_marginTop="18dp" />
 
         <TextView
-            android:text="Reverberance"
+            android:text="Delay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView4"
@@ -103,8 +103,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView18"
             android:textSize="18sp"
-            android:text="Room-Scale"
-            android:layout_below="@+id/reverb_hf_damping_seekbar"
+            android:text="Regen"
+            android:layout_below="@+id/flanger_depth_seekbar"
             android:layout_marginTop="17dp"
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
@@ -112,18 +112,18 @@
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_room_scale_seekbar"
+            android:id="@+id/flanger_regen_seekbar"
             android:layout_below="@+id/textView18"
-            android:layout_alignStart="@+id/reverb_reverberance_seekbar"
-            android:layout_toStartOf="@+id/reverb_reverberance_value"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
+            android:layout_toStartOf="@+id/flanger_delay_value"
             android:layout_marginTop="13dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_room_scale_value"
+            android:id="@+id/flanger_regen_value"
             android:text="0"
-            android:layout_alignBottom="@+id/reverb_room_scale_seekbar"
+            android:layout_alignBottom="@+id/flanger_regen_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp"/>
 
@@ -132,8 +132,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView19"
             android:textSize="18sp"
-            android:text="Stereo-Depth"
-            android:layout_below="@+id/reverb_room_scale_seekbar"
+            android:text="Width"
+            android:layout_below="@+id/flanger_regen_seekbar"
             android:layout_marginTop="17dp"
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
@@ -141,18 +141,18 @@
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_stereo_depth_seekbar"
+            android:id="@+id/flanger_width_seekbar"
             android:layout_below="@+id/textView19"
-            android:layout_alignStart="@+id/reverb_reverberance_seekbar"
-            android:layout_toStartOf="@+id/reverb_reverberance_value"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
+            android:layout_toStartOf="@+id/flanger_delay_value"
             android:layout_marginTop="13dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_stereo_depth_value"
+            android:id="@+id/flanger_width_value"
             android:text="0"
-            android:layout_alignBottom="@+id/reverb_stereo_depth_seekbar"
+            android:layout_alignBottom="@+id/flanger_width_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp"/>
 
@@ -161,8 +161,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView20"
             android:textSize="18sp"
-            android:text="Pre-Delay"
-            android:layout_below="@+id/reverb_stereo_depth_seekbar"
+            android:text="Speed"
+            android:layout_below="@+id/flanger_width_seekbar"
             android:layout_marginTop="17dp"
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
@@ -170,18 +170,18 @@
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_pre_delay_seekbar"
+            android:id="@+id/flanger_speed_seekbar"
             android:layout_below="@+id/textView20"
-            android:layout_alignStart="@+id/reverb_reverberance_seekbar"
-            android:layout_toStartOf="@+id/reverb_reverberance_value"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
+            android:layout_toStartOf="@+id/flanger_delay_value"
             android:layout_marginTop="13dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_pre_delay_value"
+            android:id="@+id/flanger_speed_value"
             android:text="0"
-            android:layout_alignBottom="@+id/reverb_pre_delay_seekbar"
+            android:layout_alignBottom="@+id/flanger_speed_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp"/>
 
@@ -190,8 +190,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/textView21"
             android:textSize="18sp"
-            android:text="Wet-Gain"
-            android:layout_below="@+id/reverb_pre_delay_seekbar"
+            android:text="Shape"
+            android:layout_below="@+id/flanger_speed_seekbar"
             android:layout_marginTop="17dp"
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
@@ -199,18 +199,18 @@
         <SeekBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_wet_gain_seekbar"
+            android:id="@+id/flanger_shape_seekbar"
             android:layout_below="@+id/textView21"
-            android:layout_alignStart="@+id/reverb_reverberance_seekbar"
-            android:layout_toStartOf="@+id/reverb_reverberance_value"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
+            android:layout_toStartOf="@+id/flanger_delay_value"
             android:layout_marginTop="13dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/reverb_wet_gain_value"
+            android:id="@+id/flanger_shape_value"
             android:text="0"
-            android:layout_alignBottom="@+id/reverb_wet_gain_seekbar"
+            android:layout_alignBottom="@+id/flanger_shape_seekbar"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="36dp"/>
 
@@ -220,7 +220,65 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/view2"
             android:layout_alignStart="@+id/textView4"
-            android:id="@+id/reverb_reset_button" />
+            android:id="@+id/flanger_reset_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView22"
+            android:textSize="18sp"
+            android:text="Phase"
+            android:layout_below="@+id/flanger_shape_seekbar"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_alignParentStart="true"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flanger_phase_seekbar"
+            android:layout_below="@+id/textView22"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
+            android:layout_toStartOf="@+id/flanger_delay_value"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flanger_phase_value"
+            android:text="0"
+            android:layout_alignBottom="@+id/flanger_phase_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView23"
+            android:textSize="18sp"
+            android:text="Interep"
+            android:layout_below="@+id/flanger_phase_seekbar"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_alignParentStart="true"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flanger_interep_seekbar"
+            android:layout_below="@+id/textView23"
+            android:layout_alignStart="@+id/flanger_delay_seekbar"
+            android:layout_toStartOf="@+id/flanger_delay_value"
+            android:layout_marginTop="13dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/flanger_interep_value"
+            android:text="0"
+            android:layout_alignBottom="@+id/flanger_interep_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp"/>
 
     </RelativeLayout>
 </ScrollView>

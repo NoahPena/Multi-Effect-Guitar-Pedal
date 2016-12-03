@@ -161,7 +161,7 @@ public class EffectsActivity extends AppCompatActivity
                     return;
                 }
 
-                EffectsManager.updateValues = false;
+                //EffectsManager.updateValues = false;
 
                 String item = spinner.getSelectedItem().toString();
 
@@ -184,9 +184,9 @@ public class EffectsActivity extends AppCompatActivity
 
                 tabManuallySelected = true;
 
-                EffectsManager.currentTabOne = null;
-                EffectsManager.currentTabTwo = null;
-                EffectsManager.currentTabThree = null;
+//                EffectsManager.currentTabOne = null;
+//                EffectsManager.currentTabTwo = null;
+//                EffectsManager.currentTabThree = null;
 
                 effectsPageAdapter.updateTab(tabSelected);
 
@@ -280,10 +280,11 @@ public class EffectsActivity extends AppCompatActivity
 
             case R.id.create_new_effect_button:
                 EffectsManager.currentEffect = null;
+                EffectsManager.currentTabOne = null;
                 EffectsManager.currentTabTwo = null;
                 EffectsManager.currentTabThree = null;
-                effectsPageAdapter.removeTab(tabSelected);
-                effectsPageAdapter.removeTab(tabSelected);
+                UserPreferences.setTabOneEffect(getApplicationContext(), "Chorus", 0);
+                effectsPageAdapter.setAmountOfTabs(1);
                 effectName.setText("");
                 return true;
 

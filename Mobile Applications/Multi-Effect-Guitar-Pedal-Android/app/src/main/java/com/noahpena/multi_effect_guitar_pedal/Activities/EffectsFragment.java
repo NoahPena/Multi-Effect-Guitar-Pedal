@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.noahpena.multi_effect_guitar_pedal.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,8 @@ public class EffectsFragment extends Fragment
     public int tabNumber = -1;
 
     public RelativeLayout root;
+
+    public View fragmentView;
 
     public String result;
 
@@ -59,6 +62,34 @@ public class EffectsFragment extends Fragment
                 layout = R.layout.reverb_effect_layout;
                 break;
 
+            case "Low Pass":
+                layout = R.layout.lowpass_effect_layout;
+                break;
+
+            case "High Pass":
+                layout = R.layout.highpass_effect_layout;
+                break;
+
+            case "Overdrive":
+                layout = R.layout.overdrive_effect_layout;
+                break;
+
+            case "Tremolo":
+                layout = R.layout.tremolo_effect_layout;
+                break;
+
+            case "Phaser":
+                layout = R.layout.phaser_effect_layout;
+                break;
+
+            case "Echo":
+                layout = R.layout.echo_effect_layout;
+                break;
+
+            case "Flanger":
+                layout = R.layout.flanger_effect_layout;
+                break;
+
             default:
                 layout = R.layout.chorus_effect_layout;
                 break;
@@ -81,46 +112,81 @@ public class EffectsFragment extends Fragment
                 view = setupReverbView(view);
                 break;
 
+            case "Low Pass":
+                view = setupLowpassView(view);
+                break;
+
+            case "High Pass":
+                view = setupHighpassView(view);
+                break;
+
+            case "Overdrive":
+                view = setupOverdriveView(view);
+                break;
+
+            case "Tremolo":
+                view = setupTremoloView(view);
+                break;
+
+            case "Phaser":
+                view = setupPhaserView(view);
+                break;
+
+            case "Echo":
+                view = setupEchoView(view);
+                break;
+
+            case "Flanger":
+                view = setupFlangerView(view);
+                break;
+
             default:
                 view = setupChorusView(view);
                 break;
         }
 
+        fragmentView = view;
+
         switch (tabNumber)
         {
             case 0:
-                //if(EffectsManager.currentTabOne == null)
-                //{
-                    EffectsManager.currentTabOne = new BaseEffect(result, spinnerValue, root);
-                //}
-                //else
-                //{
-                //    updateValues();
-                //}
+                if(!EffectsManager.updateTabOne)
+                {
+                    EffectsManager.currentTabOne = new BaseEffect(result, spinnerValue, this);
+                }
+                else
+                {
+                    updateValues();
+
+                    EffectsManager.updateTabOne = false;
+                }
                 break;
 
             case 1:
-                //if(EffectsManager.currentTabTwo == null)
-                //{
-                    EffectsManager.currentTabTwo = new BaseEffect(result, spinnerValue, root);
-                //}
-                //else
-                //{
-                 //   updateValues();
-                //}
+                if(!EffectsManager.updateTabTwo)
+                {
+                    EffectsManager.currentTabTwo = new BaseEffect(result, spinnerValue, this);
+                }
+                else
+                {
+                    updateValues();
+                    EffectsManager.updateTabTwo = false;
+                }
                 break;
 
             case 2:
-                //if(EffectsManager.currentTabThree == null)
-                //{
-                    EffectsManager.currentTabThree = new BaseEffect(result, spinnerValue, root);
-                //}
-                //else
-                //{
-                //    updateValues();
-                //}
+                if(!EffectsManager.updateTabThree)
+                {
+                    EffectsManager.currentTabThree = new BaseEffect(result, spinnerValue, this);
+                }
+                else
+                {
+                    updateValues();
+                    EffectsManager.updateTabThree = false;
+                }
                 break;
         }
+
 
 
 
@@ -160,20 +226,26 @@ public class EffectsFragment extends Fragment
         {
             case 0:
                 values = EffectsManager.currentTabOne.getParameters();
+                Log.d("DEBUG", "1Command: " + EffectsManager.currentTabOne.getCommand());
                 break;
 
             case 1:
                 values = EffectsManager.currentTabTwo.getParameters();
+                Log.d("DEBUG", "2Command: " + EffectsManager.currentTabTwo.getCommand());
                 break;
 
             case 2:
                 values = EffectsManager.currentTabThree.getParameters();
+                Log.d("DEBUG", "3Command: " + EffectsManager.currentTabThree.getCommand());
                 break;
 
             default:
                 values = EffectsManager.currentTabOne.getParameters();
+                Log.d("DEBUG", "1Command: " + EffectsManager.currentTabOne.getCommand());
                 break;
         }
+
+
 
         for(int i = 0; i < values.size(); i++)
         {
@@ -207,7 +279,22 @@ public class EffectsFragment extends Fragment
 
     public void sendValues()
     {
+        switch(tabNumber)
+        {
+            case 0:
+                EffectsManager.currentTabOne = new BaseEffect(result, spinnerValue, this);
+                break;
 
+            case 1:
+                EffectsManager.currentTabTwo = new BaseEffect(result, spinnerValue, this);
+                break;
+
+            case 2:
+                EffectsManager.currentTabThree = new BaseEffect(result, spinnerValue, this);
+                break;
+        }
+
+        //Send Bluetooth Packet of UserEffect
     }
 
     public View setupChorusView(View view)
@@ -225,12 +312,11 @@ public class EffectsFragment extends Fragment
         root = (RelativeLayout)view.findViewById(R.id.delay_root_layout);
 
         TextView delayTextView = (TextView)view.findViewById(R.id.delay_delay_value);
+        delayTextView.setText("0s");
 
         SeekBar delaySeekbar = (SeekBar)view.findViewById(R.id.delay_delay_seekbar);
-
         delaySeekbar.setMax(300);
-
-        delaySeekbar.setOnSeekBarChangeListener(new SeekbarEffectListener(delayTextView));
+        delaySeekbar.setOnSeekBarChangeListener(new SeekbarEffectListener(delayTextView, "s"));
 
 
         return view;
@@ -244,20 +330,75 @@ public class EffectsFragment extends Fragment
         return view;
     }
 
+    public View setupLowpassView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.lowpass_root_layout);
+
+        return view;
+    }
+
+    public View setupHighpassView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.highpass_root_layout);
+
+        return view;
+    }
+
+    public View setupOverdriveView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.overdrive_root_layout);
+
+        return view;
+    }
+
+    public View setupTremoloView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.tremolo_root_layout);
+
+        return view;
+    }
+
+    public View setupPhaserView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.phaser_root_layout);
+
+        return view;
+    }
+
+    public View setupEchoView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.echo_root_layout);
+
+        return view;
+    }
+
+    public View setupFlangerView(View view)
+    {
+        root = (RelativeLayout)view.findViewById(R.id.flanger_root_layout);
+
+        return view;
+    }
+
+
+
+
+
     class SeekbarEffectListener implements SeekBar.OnSeekBarChangeListener
     {
 
         TextView value;
+        String unit;
 
-        public SeekbarEffectListener(TextView textView)
+        public SeekbarEffectListener(TextView textView, String units)
         {
             this.value = textView;
+            this.unit = units;
         }
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int i, boolean b)
         {
-            value.setText(Double.toString((double)i/100));
+            value.setText(Double.toString((double)i/100) + this.unit);
         }
 
         @Override

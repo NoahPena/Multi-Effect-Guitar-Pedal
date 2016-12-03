@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/chorus_root_layout"
         android:layout_width="match_parent"
-        android:layout_height="800dp">
+        android:layout_height="wrap_content">
 
         <SeekBar
             android:layout_width="wrap_content"
@@ -79,7 +79,8 @@
             android:background="@android:color/darker_gray"
             android:layout_below="@+id/textView5"
             android:layout_alignEnd="@+id/space3"
-            android:layout_marginTop="11dp" />
+            android:layout_marginTop="11dp"
+            android:id="@+id/view6" />
 
         <TextView
             android:text="Gain-In"
@@ -272,6 +273,387 @@
             android:id="@+id/textView16"
             android:layout_alignTop="@+id/chorus_modulation_one_switch"
             android:layout_toStartOf="@+id/textView" />
+
+        <Button
+            android:text="Defaults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/view6"
+            android:layout_alignEnd="@+id/textView15"
+            android:id="@+id/chorus_defaults_button" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView16"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view4" />
+
+        <TextView
+            android:text="Second Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:textStyle="normal|bold"
+            android:id="@+id/textView23"
+            android:textSize="18sp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chorus_delay_group_two_switch"
+            android:layout_alignBaseline="@+id/textView23"
+            android:layout_alignBottom="@+id/textView23"
+            android:layout_toStartOf="@+id/textView5"
+            android:tag="delayRoot"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView23"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delay"
+            android:layout_below="@+id/view5"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView24"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView24"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_delay_two_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_delay_two_seekbar"
+            android:layout_toEndOf="@+id/chorus_delay_two_seekbar"
+            android:id="@+id/chorus_delay_two_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decay"
+            android:layout_below="@+id/chorus_delay_two_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView25"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView25"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_decay_two_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_decay_two_seekbar"
+            android:layout_toEndOf="@+id/chorus_decay_two_seekbar"
+            android:id="@+id/chorus_decay_two_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speed"
+            android:layout_below="@+id/chorus_decay_two_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView26"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView26"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_speed_two_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_speed_two_seekbar"
+            android:layout_toEndOf="@+id/chorus_speed_two_seekbar"
+            android:id="@+id/chorus_speed_two_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Depth"
+            android:layout_below="@+id/chorus_speed_two_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView27"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView27"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_depth_two_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_depth_two_seekbar"
+            android:layout_toEndOf="@+id/chorus_depth_two_seekbar"
+            android:id="@+id/chorus_depth_two_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modulation"
+            android:layout_below="@+id/chorus_depth_two_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView28"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView28"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:tag="modulation"
+            android:id="@+id/chorus_modulation_two_switch" />
+
+        <TextView
+            android:text="Triangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView30"
+            android:layout_toEndOf="@+id/textView"
+            android:id="@+id/textView29" />
+
+        <TextView
+            android:text="Sinusoidal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView30"
+            android:layout_alignTop="@+id/chorus_modulation_two_switch"
+            android:layout_toStartOf="@+id/textView" />
+
+        <!-- this is a big break between them so i dont' get lost!-->
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView30"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view7" />
+
+        <TextView
+            android:text="Third Delay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:textStyle="normal|bold"
+            android:id="@+id/textView31"
+            android:textSize="18sp" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chorus_delay_group_three_switch"
+            android:layout_alignBaseline="@+id/textView31"
+            android:layout_alignBottom="@+id/textView31"
+            android:layout_toStartOf="@+id/textView5"
+            android:tag="delayRoot"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView31"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view8" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delay"
+            android:layout_below="@+id/view8"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView32"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView32"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_delay_three_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_delay_three_seekbar"
+            android:layout_toEndOf="@+id/chorus_delay_three_seekbar"
+            android:id="@+id/chorus_delay_three_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Decay"
+            android:layout_below="@+id/chorus_delay_three_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView33"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView33"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_decay_three_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_decay_three_seekbar"
+            android:layout_toEndOf="@+id/chorus_decay_three_seekbar"
+            android:id="@+id/chorus_decay_three_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speed"
+            android:layout_below="@+id/chorus_decay_three_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView34"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView34"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_speed_three_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_speed_three_seekbar"
+            android:layout_toEndOf="@+id/chorus_speed_three_seekbar"
+            android:id="@+id/chorus_speed_three_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Depth"
+            android:layout_below="@+id/chorus_speed_three_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView35"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView35"
+            android:layout_alignStart="@+id/textView11"
+            android:layout_marginTop="12dp"
+            android:id="@+id/chorus_depth_three_seekbar"
+            android:layout_alignEnd="@+id/chorus_speed_one_seekbar" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/chorus_depth_three_seekbar"
+            android:layout_toEndOf="@+id/chorus_depth_three_seekbar"
+            android:id="@+id/chorus_depth_three_value" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Modulation"
+            android:layout_below="@+id/chorus_depth_three_seekbar"
+            android:layout_alignStart="@+id/textView11"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:id="@+id/textView36"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView36"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:tag="modulation"
+            android:id="@+id/chorus_modulation_three_switch" />
+
+        <TextView
+            android:text="Triangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView38"
+            android:layout_toEndOf="@+id/textView"
+            android:id="@+id/textView37" />
+
+        <TextView
+            android:text="Sinusoidal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView38"
+            android:layout_alignTop="@+id/chorus_modulation_three_switch"
+            android:layout_toStartOf="@+id/textView" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView38"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:id="@+id/view9" />
 
     </RelativeLayout>
 </ScrollView>

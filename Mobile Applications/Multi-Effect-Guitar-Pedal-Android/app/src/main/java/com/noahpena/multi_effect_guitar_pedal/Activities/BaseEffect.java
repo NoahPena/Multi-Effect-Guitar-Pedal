@@ -1,6 +1,7 @@
 package com.noahpena.multi_effect_guitar_pedal.Activities;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -51,12 +52,12 @@ public class BaseEffect implements Serializable
 
     private String command;
 
-    public BaseEffect(String name, int spinnerPosition, RelativeLayout root)
+    public BaseEffect(String name, int spinnerPosition, EffectsFragment fragment)
     {
         this.name = name;
         this.spinnerPosition = spinnerPosition;
 
-        createParameters(root);
+        createParameters(fragment.root, fragment.fragmentView);
     }
 
     public String getCommand()
@@ -79,7 +80,7 @@ public class BaseEffect implements Serializable
         return parameters;
     }
 
-    public void createParameters(RelativeLayout root)
+    public void createParameters(RelativeLayout root, View parent)
     {
         List<EffectDuple> parameters = new ArrayList<>();
 
@@ -93,21 +94,29 @@ public class BaseEffect implements Serializable
             {
                 if(v instanceof SeekBar)
                 {
-                    parameters.add(new EffectDuple(v.getId(), ((SeekBar)v).getProgress(), false, false, false));
+                    SeekBar temp = (SeekBar)parent.findViewById(v.getId());
+
+                    parameters.add(new EffectDuple(v.getId(), temp.getProgress(), false, false, false));
                 }
                 else if(v instanceof Switch)
                 {
                     if(((String)v.getTag()).equalsIgnoreCase("modulation"))
                     {
-                        parameters.add(new EffectDuple(v.getId(), -1, ((Switch)v).isChecked(), true, false));
+                        Switch temp = (Switch)parent.findViewById(v.getId());
+
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), true, false));
                     }
                     else if(((String)v.getTag()).equalsIgnoreCase("delayRoot"))
                     {
-                        parameters.add(new EffectDuple(v.getId(), -1, ((Switch)v).isChecked(), false, true));
+                        Switch temp = (Switch)parent.findViewById(v.getId());
+
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false, true));
                     }
                     else
                     {
-                        parameters.add(new EffectDuple(v.getId(), -1, ((Switch)v).isChecked(), false , false));
+                        Switch temp = (Switch)parent.findViewById(v.getId());
+
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false , false));
                     }
                 }
             }
@@ -136,11 +145,11 @@ public class BaseEffect implements Serializable
                 {
 
                 }
-                else if(temp.switchValue && temp.modulation)
+                else if(!temp.switchValue && temp.modulation)
                 {
                     co += " " + "-s";
                 }
-                else if(!temp.switchValue && temp.modulation)
+                else if(temp.switchValue && temp.modulation)
                 {
                     co += " " + "-t";
                 }
@@ -150,6 +159,8 @@ public class BaseEffect implements Serializable
                 }
             }
         }
+
+        Log.d("DEBUG", co);
 
         this.command = co;
     }

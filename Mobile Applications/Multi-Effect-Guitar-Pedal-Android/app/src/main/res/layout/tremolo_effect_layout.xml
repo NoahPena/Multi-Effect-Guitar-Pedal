@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:id="@+id/tremolo_root_layout">
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="12dp"
+            android:id="@+id/tremolo_speed_seekbar"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_toStartOf="@+id/tremolo_speed_value" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/tremolo_speed_value"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:text="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tremolo_speed_value"
+            android:layout_alignBottom="@+id/tremolo_speed_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp" />
+
+        <TextView
+            android:text="Basic Settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/textView5"
+            android:layout_alignEnd="@+id/space3"
+            android:layout_marginTop="11dp"
+            android:id="@+id/view4" />
+
+        <TextView
+            android:text="Speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="18sp"
+            android:layout_marginTop="60dp"
+            android:layout_marginStart="17dp"
+            android:layout_below="@+id/view10"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView22"
+            android:text="Depth"
+            android:textSize="18sp"
+            android:layout_marginTop="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_below="@+id/tremolo_speed_seekbar"
+            android:layout_alignParentStart="true"/>
+
+        <SeekBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView22"
+            android:layout_marginTop="12dp"
+            android:id="@+id/tremolo_depth_seekbar"
+            android:layout_alignStart="@id/textView4"
+            android:layout_toStartOf="@+id/tremolo_speed_value"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:id="@+id/tremolo_depth_value"
+            android:layout_alignBottom="@+id/tremolo_depth_seekbar"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="36dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_below="@+id/tremolo_depth_seekbar"
+            android:layout_marginTop="17dp" />
+
+        <Button
+            android:text="Defaults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/view4"
+            android:layout_alignStart="@+id/textView4"
+            android:id="@+id/tremolo_default_button" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -42,7 +42,9 @@ public class EffectsManager
     public static BaseEffect currentTabOne = null;
     public static BaseEffect currentTabTwo = null;
     public static BaseEffect currentTabThree = null;
-    public static boolean updateValues = false;
+    public static boolean updateTabOne = false;
+    public static boolean updateTabTwo = false;
+    public static boolean updateTabThree = false;
 
     private static File appDir;
 
@@ -100,6 +102,10 @@ public class EffectsManager
                     currentTabTwo = currentEffect.getEffectTwo();
                     currentTabThree = currentEffect.getEffectThree();
 
+                    EffectsManager.updateTabOne = true;
+                    EffectsManager.updateTabTwo = true;
+                    EffectsManager.updateTabThree = true;
+
                     String msg = currentTabOne.getName();
 
                     if(currentTabTwo != null)
@@ -138,7 +144,6 @@ public class EffectsManager
 
                     pageAdapter.setAmountOfTabs(tabs);
 
-                    updateValues = true;
                 }
             }
         });
