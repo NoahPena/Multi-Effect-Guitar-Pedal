@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
@@ -334,6 +335,15 @@ public class EffectsFragment extends Fragment
     {
         root = (RelativeLayout)view.findViewById(R.id.lowpass_root_layout);
 
+        TextView lowpassTextView = (TextView)view.findViewById(R.id.lowpass_frequency_value);
+        lowpassTextView.setText("1000Hz");
+
+        SeekBar lowpassSeekBar = (SeekBar)view.findViewById(R.id.lowpass_frequency_seekbar);
+        lowpassSeekBar.setProgress(0);
+        lowpassSeekBar.setMax(8000 * 100);
+        lowpassSeekBar.setProgress(1000 * 100);
+        lowpassSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(lowpassTextView, "Hz"));
+
         return view;
     }
 
@@ -341,12 +351,57 @@ public class EffectsFragment extends Fragment
     {
         root = (RelativeLayout)view.findViewById(R.id.highpass_root_layout);
 
+        TextView highpassTextView = (TextView)view.findViewById(R.id.highpass_frequency_value);
+        highpassTextView.setText("3000Hz");
+
+        SeekBar highpassSeekBar = (SeekBar)view.findViewById(R.id.highpass_frequency_seekbar);
+        highpassSeekBar.setProgress(0);
+        highpassSeekBar.setMax(15000 * 100);
+        highpassSeekBar.setProgress(3000 * 100);
+        highpassSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(highpassTextView, "Hz"));
+
         return view;
     }
 
     public View setupOverdriveView(View view)
     {
         root = (RelativeLayout)view.findViewById(R.id.overdrive_root_layout);
+
+        final TextView overdriveGainTextView = (TextView)view.findViewById(R.id.overdrive_gain_value);
+        overdriveGainTextView.setText("20dB");
+
+        final TextView overdriveColorTextView = (TextView)view.findViewById(R.id.overdrive_color_value);
+        overdriveColorTextView.setText("20HD");
+
+        final SeekBar overdriveGainSeekBar = (SeekBar)view.findViewById(R.id.overdrive_gain_seekbar);
+        overdriveGainSeekBar.setProgress(0);
+        overdriveGainSeekBar.setMax(40 * 100);
+        overdriveGainSeekBar.setProgress(20 * 100);
+        overdriveGainSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(overdriveGainTextView, "dB"));
+
+        final SeekBar overdriveColorSeekBar = (SeekBar)view.findViewById(R.id.overdrive_color_seekbar);
+        overdriveColorSeekBar.setProgress(0);
+        overdriveColorSeekBar.setMax(40 * 100);
+        overdriveColorSeekBar.setProgress(20 * 100);
+        overdriveColorSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(overdriveColorTextView, "HD"));
+
+        Button overdriveResetButton = (Button)view.findViewById(R.id.overdrive_default_button);
+        overdriveResetButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                overdriveGainTextView.setText("20dB");
+                overdriveColorTextView.setText("20HD");
+
+                overdriveGainSeekBar.setProgress(0);
+                overdriveGainSeekBar.setProgress(20 * 100);
+
+                overdriveColorSeekBar.setProgress(0);
+                overdriveColorSeekBar.setProgress(20 * 100);
+            }
+        });
+
 
         return view;
     }

@@ -54,7 +54,7 @@ public class BaseEffect implements Serializable
 
     public BaseEffect(String name, int spinnerPosition, EffectsFragment fragment)
     {
-        this.name = name;
+        this.name = name.toLowerCase().replaceAll("\\s+", "");
         this.spinnerPosition = spinnerPosition;
 
         createParameters(fragment.root, fragment.fragmentView);
