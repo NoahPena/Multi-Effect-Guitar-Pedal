@@ -148,6 +148,7 @@
             android:layout_alignStart="@+id/textView2"
             android:layout_marginTop="12dp"
             android:id="@+id/chorus_delay_one_seekbar"
+            android:tag="chorusDelay"
             android:layout_alignEnd="@+id/chorus_gain_out_seekbar" />
 
         <TextView
@@ -175,6 +176,7 @@
             android:layout_alignStart="@+id/textView6"
             android:layout_marginTop="12dp"
             android:id="@+id/chorus_decay_one_seekbar"
+            android:tag="speed"
             android:layout_toStartOf="@+id/chorus_delay_one_value" />
 
         <TextView

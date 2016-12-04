@@ -26,9 +26,11 @@ public class BaseEffect implements Serializable
         public int sliderValue = -1;
         public boolean switchValue = false;
         public boolean modulation = false;
+        public boolean interpolation = false;
+        public boolean shape = false;
         public boolean delay = false;
 
-        public EffectDuple(int elementID, int sliderValue, boolean switchValue, boolean modulation, boolean delay)
+        public EffectDuple(int elementID, int sliderValue, boolean switchValue, boolean modulation, boolean delay, boolean interpolation, boolean shape)
         {
             this.elementID = elementID;
 
@@ -43,6 +45,8 @@ public class BaseEffect implements Serializable
 
             this.modulation = modulation;
             this.delay = delay;
+            this.interpolation = interpolation;
+            this.shape = shape;
         }
     }
 
@@ -96,7 +100,18 @@ public class BaseEffect implements Serializable
                 {
                     SeekBar temp = (SeekBar)parent.findViewById(v.getId());
 
-                    parameters.add(new EffectDuple(v.getId(), temp.getProgress(), false, false, false));
+                    int progress = temp.getProgress();
+
+                    if(temp.getTag() == "speed" && progress < 10)
+                    {
+                        progress = 10;
+                    }
+                    else if(temp.getTag() == "chorusDelay" && progress < 20)
+                    {
+                        progress = 20;
+                    }
+
+                    parameters.add(new EffectDuple(v.getId(), progress, false, false, false, false, false));
                 }
                 else if(v instanceof Switch)
                 {
@@ -104,19 +119,31 @@ public class BaseEffect implements Serializable
                     {
                         Switch temp = (Switch)parent.findViewById(v.getId());
 
-                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), true, false));
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), true, false, false, false));
                     }
                     else if(((String)v.getTag()).equalsIgnoreCase("delayRoot"))
                     {
                         Switch temp = (Switch)parent.findViewById(v.getId());
 
-                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false, true));
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false, true, false, false));
+                    }
+                    else if(((String)v.getTag()).equalsIgnoreCase("interpolation"))
+                    {
+                        Switch temp = (Switch)parent.findViewById(v.getId());
+
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false, false, true, false));
+                    }
+                    else if(((String)v.getTag()).equalsIgnoreCase("shape"))
+                    {
+                        Switch temp = (Switch)parent.findViewById(v.getId());
+
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false, false, false, true));
                     }
                     else
                     {
                         Switch temp = (Switch)parent.findViewById(v.getId());
 
-                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false , false));
+                        parameters.add(new EffectDuple(v.getId(), -1, temp.isChecked(), false , false, false, false));
                     }
                 }
             }
@@ -152,6 +179,22 @@ public class BaseEffect implements Serializable
                 else if(temp.switchValue && temp.modulation)
                 {
                     co += " " + "-t";
+                }
+                else if(temp.switchValue && temp.interpolation)
+                {
+                    co += " " + "qua";
+                }
+                else if(!temp.switchValue && temp.interpolation)
+                {
+                    co += " " + "lin";
+                }
+                else if(temp.switchValue && temp.shape)
+                {
+                    co += " " + "tri";
+                }
+                else if(!temp.switchValue && temp.shape)
+                {
+                    co += " " + "sin";
                 }
                 else
                 {

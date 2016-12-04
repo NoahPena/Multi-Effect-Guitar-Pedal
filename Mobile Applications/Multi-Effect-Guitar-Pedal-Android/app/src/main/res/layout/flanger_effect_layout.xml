@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
-            android:layout_below="@+id/flanger_interep_seekbar"
+            android:layout_below="@+id/flanger_interep_switch"
             android:layout_marginTop="18dp" />
 
         <TextView
@@ -174,6 +174,7 @@
             android:layout_below="@+id/textView20"
             android:layout_alignStart="@+id/flanger_delay_seekbar"
             android:layout_toStartOf="@+id/flanger_delay_value"
+            android:tag="speed"
             android:layout_marginTop="13dp" />
 
         <TextView
@@ -196,23 +197,30 @@
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
 
-        <SeekBar
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/flanger_shape_seekbar"
             android:layout_below="@+id/textView21"
-            android:layout_alignStart="@+id/flanger_delay_seekbar"
-            android:layout_toStartOf="@+id/flanger_delay_value"
-            android:layout_marginTop="13dp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:tag="shape"
+            android:id="@+id/flanger_shape_switch" />
 
         <TextView
+            android:text="Triangle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/flanger_shape_value"
-            android:text="0"
-            android:layout_alignBottom="@+id/flanger_shape_seekbar"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="36dp"/>
+            android:layout_alignBottom="@+id/textView40"
+            android:layout_toEndOf="@+id/textView5"
+            android:id="@+id/textView39" />
+
+        <TextView
+            android:text="Sinusoidal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView40"
+            android:layout_alignTop="@+id/flanger_shape_switch"
+            android:layout_toStartOf="@+id/textView5" />
 
         <Button
             android:text="Defaults"
@@ -228,7 +236,7 @@
             android:id="@+id/textView22"
             android:textSize="18sp"
             android:text="Phase"
-            android:layout_below="@+id/flanger_shape_seekbar"
+            android:layout_below="@+id/flanger_shape_switch"
             android:layout_marginTop="17dp"
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
@@ -262,23 +270,30 @@
             android:layout_marginStart="17dp"
             android:layout_alignParentStart="true"/>
 
-        <SeekBar
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/flanger_interep_seekbar"
             android:layout_below="@+id/textView23"
-            android:layout_alignStart="@+id/flanger_delay_seekbar"
-            android:layout_toStartOf="@+id/flanger_delay_value"
-            android:layout_marginTop="13dp"/>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:tag="interpolation"
+            android:id="@+id/flanger_interep_switch" />
 
         <TextView
+            android:text="Quadratic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/flanger_interep_value"
-            android:text="0"
-            android:layout_alignBottom="@+id/flanger_interep_seekbar"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="36dp"/>
+            android:layout_alignBottom="@+id/textView38"
+            android:layout_toEndOf="@+id/textView5"
+            android:id="@+id/textView37" />
+
+        <TextView
+            android:text="Linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView38"
+            android:layout_alignTop="@+id/flanger_interep_switch"
+            android:layout_toStartOf="@+id/textView5" />
 
     </RelativeLayout>
 </ScrollView>
