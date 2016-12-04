@@ -33,15 +33,15 @@ public class EffectsActivity extends AppCompatActivity
 {
 
     Toolbar toolbar;
-    Spinner spinner;
+    public static Spinner spinner;
     public static ViewPager viewPager;
     TextView effectName;
 
     public static int tabSelected = 0;
     boolean manuallySelected = false;
-    boolean tabManuallySelected = false;
+    static boolean tabManuallySelected = false;
 
-    EffectsPageAdapter effectsPageAdapter;
+    public static EffectsPageAdapter effectsPageAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState)
@@ -111,6 +111,7 @@ public class EffectsActivity extends AppCompatActivity
             {
                 if(tabManuallySelected)
                 {
+                    Log.d("DEBUG", "TabManuallySelected");
                     tabManuallySelected = false;
                     return;
                 }
@@ -132,6 +133,7 @@ public class EffectsActivity extends AppCompatActivity
                         break;
                 }
 
+                Log.d("DEBUG", "Tab Not Manually Selected");
                 manuallySelected = true;
 
             }
@@ -275,7 +277,8 @@ public class EffectsActivity extends AppCompatActivity
                 return true;
 
             case R.id.open_effect_button:
-                EffectsManager.openEffect(this, effectsPageAdapter);
+                EffectsManager.openEffect(this);
+
                 return true;
 
             case R.id.create_new_effect_button:

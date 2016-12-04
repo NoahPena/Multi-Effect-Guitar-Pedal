@@ -57,9 +57,24 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
             amountOfTabs++;
         }
 
-        updateAllTabs();
-        //tabToBeUpdated = amountOfTabs - 1;
-        //notifyDataSetChanged();
+        switch (amountOfTabs)
+        {
+            case 1:
+                EffectsManager.updateTabOne = false;
+                break;
+
+            case 2:
+                EffectsManager.updateTabTwo = false;
+                break;
+
+            case 3:
+                EffectsManager.updateTabThree = false;
+                break;
+        }
+
+      //  updateAllTabs();
+        tabToBeUpdated = amountOfTabs - 1;
+        notifyDataSetChanged();
 
         return (amountOfTabs < 3);
     }
@@ -71,10 +86,24 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
             amountOfTabs--;
         }
 
-        updateAllTabs();
+        switch (amountOfTabs)
+        {
+            case 1:
+                //EffectsManager.updateTabOne = false;
+                EffectsManager.currentTabTwo = null;
+                break;
 
-//        tabToBeUpdated = amountOfTabs - 1;
-//        notifyDataSetChanged();
+            case 2:
+                //EffectsManager.updateTabTwo = false;
+                EffectsManager.currentTabThree = null;
+                break;
+
+        }
+
+//        updateAllTabs();
+
+        tabToBeUpdated = amountOfTabs - 1;
+        notifyDataSetChanged();
 
         return (amountOfTabs > 1);
     }
@@ -101,6 +130,9 @@ public class EffectsPageAdapter extends FragmentStatePagerAdapter
                 bundle.putInt("SpinnerValue", UserPreferences.getTabThreeSpinnerPosition(context));
                 break;
         }
+
+        Log.d("DEBUG", "ECKS DEE");
+        Log.d("DEBUG", "1: " + UserPreferences.getTabOneEffect(context) + " 2: " + UserPreferences.getTabTwoEffect(context));
 
         bundle.putInt("TabNumber", position);
 

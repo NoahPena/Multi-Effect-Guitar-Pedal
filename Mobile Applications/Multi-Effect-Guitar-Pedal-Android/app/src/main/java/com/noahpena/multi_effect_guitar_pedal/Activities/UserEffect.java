@@ -33,13 +33,18 @@ public class UserEffect implements Serializable
 
         if(effectTwo != null)
         {
-            command += effectTwo.getCommand();
+            command += " " + effectTwo.getCommand();
         }
 
         if(effectThree != null)
         {
-            command += effectThree.getCommand();
+            command += " " + effectThree.getCommand();
         }
+    }
+
+    public String getCommand()
+    {
+        return command;
     }
 
     public String getName() {

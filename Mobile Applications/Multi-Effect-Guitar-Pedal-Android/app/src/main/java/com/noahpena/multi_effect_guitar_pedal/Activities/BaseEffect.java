@@ -50,6 +50,7 @@ public class BaseEffect implements Serializable
         }
     }
 
+    private String tabName;
     private String name;
     private int spinnerPosition;
     private List<EffectDuple> parameters;
@@ -58,6 +59,7 @@ public class BaseEffect implements Serializable
 
     public BaseEffect(String name, int spinnerPosition, EffectsFragment fragment)
     {
+        this.tabName = name;
         this.name = name.toLowerCase().replaceAll("\\s+", "");
         this.spinnerPosition = spinnerPosition;
 
@@ -72,6 +74,11 @@ public class BaseEffect implements Serializable
     public String getName()
     {
         return name;
+    }
+
+    public String getTabName()
+    {
+        return tabName;
     }
 
     public int getSpinnerPosition()

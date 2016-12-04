@@ -55,9 +55,11 @@ public class EffectsManager
         appDir.mkdirs();
     }
 
-    public static void openEffect(final Activity activity, final EffectsPageAdapter pageAdapter)
+    public static void openEffect(final Activity activity)
     {
         final AlertDialog.Builder builder1 = new AlertDialog.Builder(new ContextThemeWrapper(activity, R.style.myDialog));
+
+        final UserEffect[] temp = new UserEffect[1];
 
         builder1.setTitle("Select Effect");
         builder1.setCancelable(true);
@@ -97,52 +99,120 @@ public class EffectsManager
 
                 if(currentEffect != null)
                 {
-                    ((TextView)activity.findViewById(R.id.userEffectNameTextBox)).setText(currentEffect.getName());
-                    currentTabOne = currentEffect.getEffectOne();
-                    currentTabTwo = currentEffect.getEffectTwo();
-                    currentTabThree = currentEffect.getEffectThree();
 
-                    EffectsManager.updateTabOne = true;
-                    EffectsManager.updateTabTwo = true;
-                    EffectsManager.updateTabThree = true;
+                    Log.d("PLS", "Command: " + currentEffect.getCommand());
 
-                    String msg = currentTabOne.getName();
+                    if(currentEffect.getEffectTwo() != null)
+                    {
+                        Log.d("PLS", "IZREAL: " + currentEffect.getEffectTwo().getName());
+                    }
+
+                    if(currentEffect.getEffectThree() != null)
+                    {
+                        Log.d("PLS", "URREAL: " + currentEffect.getEffectThree().getName());
+                    }
+
+//                    EffectsManager.currentEffect = null;
+                    EffectsManager.currentTabOne = currentEffect.getEffectOne();
+                    EffectsManager.currentTabTwo = currentEffect.getEffectTwo();
+                    EffectsManager.currentTabThree = currentEffect.getEffectThree();
+
+                    updateTabOne = false;
+                    updateTabTwo = false;
+                    updateTabThree = false;
+
+                    int tabs = 0;
+                    String msg = "";
+
+                    if(currentTabOne != null)
+                    {
+                        UserPreferences.setTabOneEffect(activity.getApplicationContext(), currentTabOne.getTabName(), currentTabOne.getSpinnerPosition());
+                        msg = currentEffect.getEffectOne().getName();
+                        updateTabOne = true;
+                        tabs++;
+                    }
 
                     if(currentTabTwo != null)
                     {
-                        msg += ", " + currentTabTwo.getName();
+                        UserPreferences.setTabTwoEffect(activity.getApplicationContext(), currentTabTwo.getTabName(), currentTabTwo.getSpinnerPosition());
+                        updateTabTwo = true;
+                        msg += ", " + currentEffect.getEffectTwo().getName();
+                        tabs++;
                     }
 
                     if(currentTabThree != null)
                     {
-                        msg += ", " + currentTabThree.getName();
-                    }
-
-                    Log.d("PLS", msg);
-
-                    int tabs = 3;
-
-                    UserPreferences.setTabOneEffect(activity.getApplicationContext(), currentTabOne.getName(), currentTabOne.getSpinnerPosition());
-
-                    if(currentTabThree == null)
-                    {
-                        tabs--;
-                    }
-                    else
-                    {
-                        UserPreferences.setTabThreeEffect(activity.getApplicationContext(), currentTabThree.getName(), currentTabThree.getSpinnerPosition());
-                    }
-                    if(currentTabTwo == null)
-                    {
-                        tabs--;
-                    }
-                    else
-                    {
-                        UserPreferences.setTabTwoEffect(activity.getApplicationContext(), currentTabTwo.getName(), currentTabTwo.getSpinnerPosition());
+                        UserPreferences.setTabThreeEffect(activity.getApplicationContext(), currentTabThree.getTabName(), currentTabThree.getSpinnerPosition());
+                        updateTabThree = true;
+                        msg += ", " + currentEffect.getEffectThree().getName();
+                        tabs++;
                     }
 
 
-                    pageAdapter.setAmountOfTabs(tabs);
+
+//                    EffectsManager.currentEffect = null;
+//                    EffectsManager.currentTabOne = null;
+//                    EffectsManager.currentTabTwo = null;
+//                    EffectsManager.currentTabThree = null;
+
+                    Log.d("DEBUG", "Opened Tabs: " + tabs);
+                    Log.d("DEBUG", "Opened Effects: " + msg);
+
+                    ((TextView)activity.findViewById(R.id.userEffectNameTextBox)).setText(currentEffect.getName());
+
+
+
+                    EffectsActivity.effectsPageAdapter.setAmountOfTabs(tabs);
+//                    effectName.setText("");
+//                    temp[0] = currentEffect;
+//
+//                    ((TextView)activity.findViewById(R.id.userEffectNameTextBox)).setText(currentEffect.getName());
+//                    currentTabOne = currentEffect.getEffectOne();
+//                    currentTabTwo = currentEffect.getEffectTwo();
+//                    currentTabThree = currentEffect.getEffectThree();
+//
+//                    EffectsManager.updateTabOne = true;
+//                    EffectsManager.updateTabTwo = true;
+//                    EffectsManager.updateTabThree = true;
+//
+//                    String msg = currentTabOne.getName();
+//
+//                    if(currentTabTwo != null)
+//                    {
+//                        msg += ", " + currentTabTwo.getName();
+//                    }
+//
+//                    if(currentTabThree != null)
+//                    {
+//                        msg += ", " + currentTabThree.getName();
+//                    }
+//
+//                    Log.d("PLS", msg);
+//
+//                    int tabs = 3;
+//
+//                    UserPreferences.setTabOneEffect(activity.getApplicationContext(), currentTabOne.getName(), currentTabOne.getSpinnerPosition());
+//
+//                    if(currentTabThree == null)
+//                    {
+//                        tabs--;
+//                    }
+//                    else
+//                    {
+//                        UserPreferences.setTabThreeEffect(activity.getApplicationContext(), currentTabThree.getName(), currentTabThree.getSpinnerPosition());
+//                    }
+//                    if(currentTabTwo == null)
+//                    {
+//                        tabs--;
+//                    }
+//                    else
+//                    {
+//                        UserPreferences.setTabTwoEffect(activity.getApplicationContext(), currentTabTwo.getName(), currentTabTwo.getSpinnerPosition());
+//                    }
+//
+//                    EffectsActivity.effectsPageAdapter.setAmountOfTabs(tabs);
+//
+//                    EffectsManager.currentEffect = temp[0];
 
                 }
             }
@@ -159,8 +229,25 @@ public class EffectsManager
         currentEffect.setEffectTwo(currentTabTwo);
         currentEffect.setEffectThree(currentTabThree);
 
+        Log.d("PLS", "SAVED OVER WITH: " + currentEffect.getCommand());
+
+        String msg = currentEffect.getEffectOne().getName();
+
+        if(currentTabTwo != null)
+        {
+            msg += ", " + currentEffect.getEffectTwo().getName();
+        }
+
+        if(currentTabThree != null)
+        {
+            msg += ", " + currentEffect.getEffectThree().getName();
+        }
+
+        Log.d("DEBUG", "Tabs: " + msg);
+
         try
         {
+            new File(appDir + "/" + currentEffect.getFileName()).delete();
             FileOutputStream fos = new FileOutputStream(new File(appDir + "/" + currentEffect.getFileName()));
             ObjectOutputStream os = new ObjectOutputStream(fos);
 
@@ -176,6 +263,7 @@ public class EffectsManager
 
     public static void saveNewEffect(final Activity activity)
     {
+
         if(currentEffect == null)
         {
             //First Time Saving
@@ -203,13 +291,15 @@ public class EffectsManager
 
                             currentEffect = new UserEffect(editText.getText().toString(), currentTabOne, currentTabTwo, currentTabThree);
 
+                            Log.d("PLS", "JUST CREATED: " + currentEffect.getCommand());
+
                             try
                             {
                                 FileOutputStream fos = new FileOutputStream(new File(appDir + "/" + editText.getText().toString() + ".effect"));
                                 //FileOutputStream fos = activity.getApplicationContext().openFileOutput(appDir + "/" + editText.getText().toString() + ".dat", Context.MODE_PRIVATE);
                                 ObjectOutputStream os = new ObjectOutputStream(fos);
 
-                                currentEffect.setFileName(currentEffect.getName());
+                                currentEffect.setFileName(currentEffect.getName() + ".effect");
 
                                 os.writeObject(currentEffect);
                                 os.close();
