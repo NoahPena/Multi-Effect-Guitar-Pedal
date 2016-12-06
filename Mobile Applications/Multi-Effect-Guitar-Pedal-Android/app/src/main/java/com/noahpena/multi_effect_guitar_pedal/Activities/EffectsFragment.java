@@ -299,7 +299,7 @@ public class EffectsFragment extends Fragment
         }
 
         //Send Bluetooth Packet of UserEffect
-        Bluetooth.write("padsp sox --buffer 1024 -d -d " + new UserEffect("temp" , EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
+        Bluetooth.writeString("padsp sox --buffer 1024 -d -d " + new UserEffect("temp" , EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
 
     }
 

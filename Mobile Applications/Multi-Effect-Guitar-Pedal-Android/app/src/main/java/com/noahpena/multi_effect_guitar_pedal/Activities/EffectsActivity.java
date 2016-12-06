@@ -50,7 +50,7 @@ public class EffectsActivity extends AppCompatActivity
         setContentView(R.layout.effects_layout);
 
         Bluetooth.init(this);
-        EffectsManager.init(this.getApplicationContext());
+        EffectsManager.init(this);
 
         spinner = (Spinner)findViewById(R.id.effectsSpinner);
 
@@ -167,7 +167,7 @@ public class EffectsActivity extends AppCompatActivity
 
                 String item = spinner.getSelectedItem().toString();
 
-                Bluetooth.write(item + " was selected\n");
+                Bluetooth.writeString("padsp sox --buffer 1024 -d -d " + new UserEffect("temp", EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
 
                 switch(tabSelected)
                 {
@@ -208,10 +208,11 @@ public class EffectsActivity extends AppCompatActivity
     {
         super.onResume();
 
-        if(!Bluetooth.isConnected())
+        if(Bluetooth.isEnabled())
         {
-            Bluetooth.connectToDevice();
+            Bluetooth.scanForBLEDevice(true, this);
         }
+
 
 
         if(EffectsManager.currentEffect != null)
@@ -298,4 +299,7 @@ public class EffectsActivity extends AppCompatActivity
 
         }
     }
+
+
+
 }
