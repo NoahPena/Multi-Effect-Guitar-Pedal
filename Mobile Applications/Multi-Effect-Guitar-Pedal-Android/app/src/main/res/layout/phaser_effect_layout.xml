@@ -146,6 +146,7 @@
             android:layout_below="@+id/phaser_decay_one_seekbar"
             android:layout_alignStart="@+id/phaser_decay_one_seekbar"
             android:layout_marginTop="17dp"
+            android:tag="speed"
             android:id="@+id/textView8"
             android:textSize="18sp" />
 

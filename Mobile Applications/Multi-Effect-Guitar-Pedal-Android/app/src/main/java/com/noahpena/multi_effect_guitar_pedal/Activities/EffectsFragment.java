@@ -272,7 +272,7 @@ public class EffectsFragment extends Fragment
                     if(temp.elementID == seekBars.get(j).getId())
                     {
                         seekBars.get(j).setProgress(0);
-                        seekBars.get(j).setProgress(temp.sliderValue);
+                        seekBars.get(j).setProgress((int)temp.sliderValue * 100);
                     }
                 }
             }
@@ -299,8 +299,8 @@ public class EffectsFragment extends Fragment
         }
 
         //Send Bluetooth Packet of UserEffect
-        Bluetooth.writeString("padsp sox --buffer 1024 -d -d " + new UserEffect("temp" , EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
-
+        //Bluetooth.writeString("padsp sox --buffer 1024 -d -d " + new UserEffect("temp" , EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
+        Bluetooth.writeString(new UserEffect("temp", EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
     }
 
     public View setupChorusView(View view)
@@ -354,13 +354,13 @@ public class EffectsFragment extends Fragment
         final SeekBar gainInSeekBar = (SeekBar)view.findViewById(R.id.chorus_gain_in_seekbar);
         gainInSeekBar.setProgress(0);
         gainInSeekBar.setMax(1 * 100);
-        gainInSeekBar.setProgress((int).5 * 100);
+        gainInSeekBar.setProgress((int)(.5 * 100));
         gainInSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(gainInTextView, "dB"));
 
         final SeekBar gainOutSeekBar = (SeekBar)view.findViewById(R.id.chorus_gain_out_seekbar);
         gainOutSeekBar.setProgress(0);
         gainOutSeekBar.setMax(1 * 100);
-        gainOutSeekBar.setProgress((int).5 * 100);
+        gainOutSeekBar.setProgress((int)(.5 * 100));
         gainOutSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(gainOutTextView, "dB"));
 
         final SeekBar delayOneSeekBar = (SeekBar)view.findViewById(R.id.chorus_delay_one_seekbar);
@@ -373,14 +373,14 @@ public class EffectsFragment extends Fragment
         final SeekBar decayOneSeekBar = (SeekBar)view.findViewById(R.id.chorus_decay_one_seekbar);
         decayOneSeekBar.setProgress(0);
         decayOneSeekBar.setMax(1 * 100);
-        decayOneSeekBar.setProgress((int).4 * 100);
+        decayOneSeekBar.setProgress((int)(.4 * 100));
         decayOneSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayOneTextView, "ms"));
         decayOneSeekBar.setEnabled(true);
 
         final SeekBar speedOneSeekBar = (SeekBar)view.findViewById(R.id.chorus_speed_one_seekbar);
         speedOneSeekBar.setProgress(0);
         speedOneSeekBar.setMax(5 * 100);
-        speedOneSeekBar.setProgress((int).25 * 100);
+        speedOneSeekBar.setProgress((int)(.25 * 100));
         speedOneSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(speedOneTextView, "Hz"));
         speedOneSeekBar.setEnabled(true);
 
@@ -403,14 +403,14 @@ public class EffectsFragment extends Fragment
         final SeekBar decayTwoSeekBar = (SeekBar)view.findViewById(R.id.chorus_decay_two_seekbar);
         decayTwoSeekBar.setProgress(0);
         decayTwoSeekBar.setMax(1 * 100);
-        decayTwoSeekBar.setProgress((int).4 * 100);
+        decayTwoSeekBar.setProgress((int)(.4 * 100));
         decayTwoSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayOneTextView, "ms"));
         decayTwoSeekBar.setEnabled(false);
 
         final SeekBar speedTwoSeekBar = (SeekBar)view.findViewById(R.id.chorus_speed_two_seekbar);
         speedTwoSeekBar.setProgress(0);
         speedTwoSeekBar.setMax(5 * 100);
-        speedTwoSeekBar.setProgress((int).25 * 100);
+        speedTwoSeekBar.setProgress((int)(.25 * 100));
         speedTwoSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(speedOneTextView, "Hz"));
         speedTwoSeekBar.setEnabled(false);
 
@@ -433,14 +433,14 @@ public class EffectsFragment extends Fragment
         final SeekBar decayThreeSeekBar = (SeekBar)view.findViewById(R.id.chorus_decay_three_seekbar);
         decayThreeSeekBar.setProgress(0);
         decayThreeSeekBar.setMax(1 * 100);
-        decayThreeSeekBar.setProgress((int).4 * 100);
+        decayThreeSeekBar.setProgress((int)(.4 * 100));
         decayThreeSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayOneTextView, "ms"));
         decayThreeSeekBar.setEnabled(false);
 
         final SeekBar speedThreeSeekBar = (SeekBar)view.findViewById(R.id.chorus_speed_three_seekbar);
         speedThreeSeekBar.setProgress(0);
         speedThreeSeekBar.setMax(5 * 100);
-        speedThreeSeekBar.setProgress((int).25 * 100);
+        speedThreeSeekBar.setProgress((int)(.25 * 100));
         speedThreeSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(speedOneTextView, "Hz"));
         speedThreeSeekBar.setEnabled(false);
 
@@ -522,10 +522,10 @@ public class EffectsFragment extends Fragment
                 mainDelayThreeSwitch.setChecked(false);
 
                 gainInSeekBar.setProgress(0);
-                gainInSeekBar.setProgress((int).5 * 100);
+                gainInSeekBar.setProgress((int)(.5 * 100));
 
                 gainOutSeekBar.setProgress(0);
-                gainOutSeekBar.setProgress((int).5 * 100);
+                gainOutSeekBar.setProgress((int)(.5 * 100));
 
                 delayOneSeekBar.setEnabled(true);
                 delayOneSeekBar.setProgress(0);
@@ -533,11 +533,11 @@ public class EffectsFragment extends Fragment
 
                 decayOneSeekBar.setEnabled(true);
                 decayOneSeekBar.setProgress(0);
-                decayOneSeekBar.setProgress((int).4 * 100);
+                decayOneSeekBar.setProgress((int)(.4 * 100));
 
                 speedOneSeekBar.setEnabled(true);
                 speedOneSeekBar.setProgress(0);
-                speedOneSeekBar.setProgress((int).25 * 100);
+                speedOneSeekBar.setProgress((int)(.25 * 100));
 
                 depthOneSeekBar.setEnabled(true);
                 depthOneSeekBar.setProgress(0);
@@ -549,11 +549,11 @@ public class EffectsFragment extends Fragment
 
                 decayTwoSeekBar.setEnabled(true);
                 decayTwoSeekBar.setProgress(0);
-                decayTwoSeekBar.setProgress((int).4 * 100);
+                decayTwoSeekBar.setProgress((int)(.4 * 100));
 
                 speedTwoSeekBar.setEnabled(true);
                 speedTwoSeekBar.setProgress(0);
-                speedTwoSeekBar.setProgress((int).25 * 100);
+                speedTwoSeekBar.setProgress((int)(.25 * 100));
 
                 depthTwoSeekBar.setEnabled(true);
                 depthTwoSeekBar.setProgress(0);
@@ -565,11 +565,11 @@ public class EffectsFragment extends Fragment
 
                 decayThreeSeekBar.setEnabled(true);
                 decayThreeSeekBar.setProgress(0);
-                decayThreeSeekBar.setProgress((int).4 * 100);
+                decayThreeSeekBar.setProgress((int)(.4 * 100));
 
                 speedThreeSeekBar.setEnabled(true);
                 speedThreeSeekBar.setProgress(0);
-                speedThreeSeekBar.setProgress((int).25 * 100);
+                speedThreeSeekBar.setProgress((int)(.25 * 100));
 
                 depthThreeSeekBar.setEnabled(true);
                 depthThreeSeekBar.setProgress(0);
@@ -807,13 +807,13 @@ public class EffectsFragment extends Fragment
         root = (RelativeLayout)view.findViewById(R.id.phaser_root_layout);
 
         final TextView gainInTextView = (TextView)view.findViewById(R.id.phaser_gain_in_value);
-        gainInTextView.setText("20dB");
+        gainInTextView.setText(".5dB");
 
         final TextView gainOutTextView = (TextView)view.findViewById(R.id.phaser_gain_out_value);
-        gainOutTextView.setText("20dB");
+        gainOutTextView.setText(".5dB");
 
         final TextView delayTextView = (TextView)view.findViewById(R.id.phaser_delay_one_value);
-        delayTextView.setText("1000ms");
+        delayTextView.setText("2ms");
 
         final TextView decayTextView = (TextView)view.findViewById(R.id.phaser_decay_one_value);
         decayTextView.setText(".25s");
@@ -823,32 +823,32 @@ public class EffectsFragment extends Fragment
 
         final SeekBar gainInSeekBar = (SeekBar)view.findViewById(R.id.phaser_gain_in_seekbar);
         gainInSeekBar.setProgress(0);
-        gainInSeekBar.setMax(40 * 100);
-        gainInSeekBar.setProgress(20 * 100);
+        gainInSeekBar.setMax(1 * 100);
+        gainInSeekBar.setProgress((int)(.5 * 100));
         gainInSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(gainInTextView, "dB"));
 
         final SeekBar gainOutSeekBar = (SeekBar)view.findViewById(R.id.phaser_gain_out_seekbar);
         gainOutSeekBar.setProgress(0);
-        gainOutSeekBar.setMax(40 * 100);
-        gainOutSeekBar.setProgress(20 * 100);
+        gainOutSeekBar.setMax(1 * 100);
+        gainOutSeekBar.setProgress((int)(.5 * 100));
         gainOutSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(gainOutTextView, "dB"));
 
         final SeekBar delaySeekBar = (SeekBar)view.findViewById(R.id.phaser_delay_one_seekbar);
         delaySeekBar.setProgress(0);
-        delaySeekBar.setMax(3000 * 100);
-        delaySeekBar.setProgress(1000 * 100);
+        delaySeekBar.setMax(5 * 100);
+        delaySeekBar.setProgress((int)(2 * 100));
         delaySeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(delayTextView, "ms"));
 
         final SeekBar decaySeekBar = (SeekBar)view.findViewById(R.id.phaser_decay_one_seekbar);
         decaySeekBar.setProgress(0);
-        decaySeekBar.setMax((int).5 * 100);
-        decaySeekBar.setProgress((int).25 * 100);
+        decaySeekBar.setMax((int)1 * 100);
+        decaySeekBar.setProgress((int)(.25 * 100));
         decaySeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayTextView, "s"));
 
         final SeekBar speedSeekBar = (SeekBar)view.findViewById(R.id.phaser_speed_one_seekbar);
         speedSeekBar.setProgress(0);
-        speedSeekBar.setMax(8000 * 100);
-        speedSeekBar.setProgress(1000 * 100);
+        speedSeekBar.setMax(2 * 100);
+        speedSeekBar.setProgress((int)1 * 100);
         speedSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(speedTextView, "Hz"));
 
         final Switch modulationSwitch = (Switch)view.findViewById(R.id.phaser_modulation_one_switch);
@@ -872,13 +872,13 @@ public class EffectsFragment extends Fragment
                 gainOutSeekBar.setProgress(20 * 100);
 
                 delaySeekBar.setProgress(0);
-                delaySeekBar.setProgress(1000 * 100);
+                delaySeekBar.setProgress(2 * 100);
 
                 decaySeekBar.setProgress(0);
-                decaySeekBar.setProgress((int).25 * 100);
+                decaySeekBar.setProgress((int)(.25 * 100));
 
-                decaySeekBar.setProgress(0);
-                speedSeekBar.setProgress(1000 * 100);
+                speedSeekBar.setProgress(0);
+                speedSeekBar.setProgress(1 * 100);
 
                 modulationSwitch.setChecked(false);
             }
@@ -920,13 +920,13 @@ public class EffectsFragment extends Fragment
         final SeekBar gainInSeekBar = (SeekBar)view.findViewById(R.id.echo_gain_in_seekbar);
         gainInSeekBar.setProgress(0);
         gainInSeekBar.setMax(1 * 100);
-        gainInSeekBar.setProgress((int).5 * 100);
+        gainInSeekBar.setProgress((int)(.5 * 100));
         gainInSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(gainInTextView, "dB"));
 
         final SeekBar gainOutSeekBar = (SeekBar)view.findViewById(R.id.echo_gain_out_seekbar);
         gainOutSeekBar.setProgress(0);
         gainOutSeekBar.setMax(1 * 100);
-        gainOutSeekBar.setProgress((int).5 * 100);
+        gainOutSeekBar.setProgress((int)(.5 * 100));
         gainOutSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(gainOutTextView, "dB"));
 
         final SeekBar delayOneSeekBar = (SeekBar)view.findViewById(R.id.echo_delay_one_seekbar);
@@ -939,7 +939,7 @@ public class EffectsFragment extends Fragment
         final SeekBar decayOneSeekBar = (SeekBar)view.findViewById(R.id.echo_decay_one_seekbar);
         decayOneSeekBar.setProgress(0);
         decayOneSeekBar.setMax(1 * 100);
-        decayOneSeekBar.setProgress((int).4 * 100);
+        decayOneSeekBar.setProgress((int)(.4 * 100));
         decayOneSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayOneTextView, "ms"));
         decayOneSeekBar.setEnabled(true);
 
@@ -955,7 +955,7 @@ public class EffectsFragment extends Fragment
         final SeekBar decayTwoSeekBar = (SeekBar)view.findViewById(R.id.echo_decay_two_seekbar);
         decayTwoSeekBar.setProgress(0);
         decayTwoSeekBar.setMax(1 * 100);
-        decayTwoSeekBar.setProgress((int).4 * 100);
+        decayTwoSeekBar.setProgress((int)(.4 * 100));
         decayTwoSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayOneTextView, "ms"));
         decayTwoSeekBar.setEnabled(false);
 
@@ -972,7 +972,7 @@ public class EffectsFragment extends Fragment
         final SeekBar decayThreeSeekBar = (SeekBar)view.findViewById(R.id.echo_decay_three_seekbar);
         decayThreeSeekBar.setProgress(0);
         decayThreeSeekBar.setMax(1 * 100);
-        decayThreeSeekBar.setProgress((int).4 * 100);
+        decayThreeSeekBar.setProgress((int)(.4 * 100));
         decayThreeSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(decayOneTextView, "ms"));
         decayThreeSeekBar.setEnabled(false);
 
@@ -1026,10 +1026,10 @@ public class EffectsFragment extends Fragment
                 mainDelayThreeSwitch.setChecked(false);
 
                 gainInSeekBar.setProgress(0);
-                gainInSeekBar.setProgress((int).5 * 100);
+                gainInSeekBar.setProgress((int)(.5 * 100));
 
                 gainOutSeekBar.setProgress(0);
-                gainOutSeekBar.setProgress((int).5 * 100);
+                gainOutSeekBar.setProgress((int)(.5 * 100));
 
                 delayOneSeekBar.setEnabled(true);
                 delayOneSeekBar.setProgress(0);
@@ -1037,7 +1037,7 @@ public class EffectsFragment extends Fragment
 
                 decayOneSeekBar.setEnabled(true);
                 decayOneSeekBar.setProgress(0);
-                decayOneSeekBar.setProgress((int).4 * 100);
+                decayOneSeekBar.setProgress((int)(.4 * 100));
 
 
                 delayTwoSeekBar.setEnabled(true);
@@ -1046,7 +1046,7 @@ public class EffectsFragment extends Fragment
 
                 decayTwoSeekBar.setEnabled(true);
                 decayTwoSeekBar.setProgress(0);
-                decayTwoSeekBar.setProgress((int).4 * 100);
+                decayTwoSeekBar.setProgress((int)(.4 * 100));
 
 
                 delayThreeSeekBar.setEnabled(true);
@@ -1055,7 +1055,7 @@ public class EffectsFragment extends Fragment
 
                 decayThreeSeekBar.setEnabled(true);
                 decayThreeSeekBar.setProgress(0);
-                decayThreeSeekBar.setProgress((int).4 * 100);
+                decayThreeSeekBar.setProgress((int)(.4 * 100));
             }
         });
 
@@ -1111,7 +1111,7 @@ public class EffectsFragment extends Fragment
         final SeekBar speedSeekBar = (SeekBar)view.findViewById(R.id.flanger_speed_seekbar);
         speedSeekBar.setProgress(0);
         speedSeekBar.setMax(5 * 100);
-        speedSeekBar.setProgress((int).5 * 100);
+        speedSeekBar.setProgress((int)(.5 * 100));
         speedSeekBar.setOnSeekBarChangeListener(new SeekbarEffectListener(speedTextView, "Hz"));
 
         final SeekBar phaseSeekBar = (SeekBar)view.findViewById(R.id.flanger_phase_seekbar);
@@ -1150,7 +1150,7 @@ public class EffectsFragment extends Fragment
                 widthSeekBar.setProgress(71 * 100);
 
                 speedSeekBar.setProgress(0);
-                speedSeekBar.setProgress((int).5 * 100);
+                speedSeekBar.setProgress((int)(.5 * 100));
 
                 phaseSeekBar.setProgress(0);
                 phaseSeekBar.setProgress(25 * 100);

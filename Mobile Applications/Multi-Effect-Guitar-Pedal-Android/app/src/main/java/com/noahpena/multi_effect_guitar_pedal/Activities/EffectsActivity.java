@@ -167,7 +167,7 @@ public class EffectsActivity extends AppCompatActivity
 
                 String item = spinner.getSelectedItem().toString();
 
-                Bluetooth.writeString("padsp sox --buffer 1024 -d -d " + new UserEffect("temp", EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
+
 
                 switch(tabSelected)
                 {
@@ -183,6 +183,8 @@ public class EffectsActivity extends AppCompatActivity
                         UserPreferences.setTabThreeEffect(getApplicationContext(), item, spinner.getSelectedItemPosition());
                         break;
                 }
+
+                //Bluetooth.writeString("padsp sox --buffer 1024 -d -d " + new UserEffect("temp", EffectsManager.currentTabOne, EffectsManager.currentTabTwo, EffectsManager.currentTabThree).getCommand());
 
                 tabManuallySelected = true;
 

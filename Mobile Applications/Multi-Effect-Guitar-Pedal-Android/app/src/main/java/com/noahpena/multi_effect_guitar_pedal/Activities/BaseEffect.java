@@ -23,7 +23,7 @@ public class BaseEffect implements Serializable
     public static class EffectDuple implements Serializable
     {
         public int elementID;
-        public int sliderValue = -1;
+        public double sliderValue = -1;
         public boolean switchValue = false;
         public boolean modulation = false;
         public boolean interpolation = false;
